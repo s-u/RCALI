@@ -1,0 +1,1 @@
+PKG_CPPFLAGS= $(CPPFLAGS) -Wno-deprecated  -I./src -I./src/adapt

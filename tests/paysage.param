@@ -1,0 +1,9 @@
+input 2 
+output 3 
+warnconv 0
+sendreceive 1
+ncouples  1 
+1 1 
+method 1
+nfunc 1 
+4 

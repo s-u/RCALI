@@ -1,0 +1,326 @@
+
+R version 2.12.2 (2011-02-25)
+Copyright (C) 2011 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> #source("moninit")
+> library("RCALI")
+Loading required package: splancs
+Loading required package: sp
+
+Spatial Point Pattern Analysis Code in S-Plus
+ 
+ Version 2 - Spatial and Space-Time analysis
+
+> 
+> 
+> # Cubature: Example of the user guide:
+> param=list(input=1,verbose=FALSE,output=1,poly=c(66,66),
++   delim=" ", reler= c(1.0e-4, 1.0e-3),
++   dz=c(0,21), dp=c(100,0),  tz=c(0,1),
++   method="cub")
+> 
+> start.run <- Sys.time()
+> califlopp(file="data",
++ c(fpollen,fseed), param=param)
+CaliFloPP -  Copyright (c) 2007 - INRA
+
+Number of polygons: 66
+-------------------
+
+Parameters:
+-----------
+verbose: 0
+output: 1
+scale: 10
+maximal dispersion distances for each function: 0 21
+minimal dispersion distances for each function: 100 0
+(the dispersion is calculated between centroids,
+ for distances beyond these values)
+method:cubature
+function 1: relative precision = 0.0001, absolute precision = 0.001
+            maximal number of evaluations points fixed to 100000 
+function 2: relative precision = 0.001, absolute precision = 0.001
+            maximal number of evaluations points fixed to 100000 
+mode of triangulation: 0 1
+
+Polygons  66, 66
+-------------------
+
+Elapsed real time in integration: 0 seconds
+
+Integrated flow for function 1:
+ mean: 6117.53 mean/area1: 0.942609 mean/area2: 0.942609
+ absolute error: 0.61155 relative error: 9.99668e-05
+ confidence interval: [6116.92, 6118.15]
+ nb. evaluations: 70448
+
+Integrated flow for function 2:
+ mean: 6403.84 mean/area1: 0.986724 mean/area2: 0.986724
+ absolute error: 5.91296 relative error: 0.000923345
+ confidence interval: [6397.93, 6409.75]
+ nb. evaluations: 14726
+
+area1: 6490 area2: 6490 
+
+
+Total elapsed real time in integration: 0 seconds (0.000000 minutes)
+> end.run <- Sys.time()
+> duration <- end.run - start.run
+> print(duration)
+Time difference of 0.6643171 secs
+> 
+> # Grid: Example of the user guide:
+> param=list(input=1, delim=" ", poly=c(66,66),
++   dz=c(0,21), dp=c(100,0),  tz=c(0,1), method="grid",
++   step=c(0.25, 0.25), nr=20)
+> start.run <- Sys.time()
+> califlopp(file="data",c(1,2), param=param)
+CaliFloPP -  Copyright (c) 2007 - INRA
+
+Number of polygons: 66
+-------------------
+
+Parameters:
+-----------
+verbose: 0
+output: 1
+scale: 10
+maximal dispersion distances for each function: 0 21
+minimal dispersion distances for each function: 100 0
+(the dispersion is calculated between centroids,
+ for distances beyond these values)
+method:grid
+seed: 1
+x-axis step: 0.25 m. 
+y-axis step: 0.25 m.
+number of estimations: 20
+
+Polygons  66, 66
+-------------------
+
+Integrated flows at each replication:
+1. Function 1: 6118.09 
+1. Function 2: 6403.59 
+2. Function 1: 6116.4 
+2. Function 2: 6405.21 
+3. Function 1: 6115.61 
+3. Function 2: 6406.55 
+4. Function 1: 6117.1 
+4. Function 2: 6404.71 
+5. Function 1: 6116.98 
+5. Function 2: 6404.47 
+6. Function 1: 6115.68 
+6. Function 2: 6406.27 
+7. Function 1: 6119.64 
+7. Function 2: 6400.71 
+8. Function 1: 6116.97 
+8. Function 2: 6404.03 
+9. Function 1: 6117.34 
+9. Function 2: 6404.45 
+10. Function 1: 6116.14 
+10. Function 2: 6405.84 
+11. Function 1: 6117.98 
+11. Function 2: 6403.4 
+12. Function 1: 6119.66 
+12. Function 2: 6400.05 
+13. Function 1: 6118.03 
+13. Function 2: 6403.57 
+14. Function 1: 6117.86 
+14. Function 2: 6403.76 
+15. Function 1: 6116.11 
+15. Function 2: 6405.84 
+16. Function 1: 6115.11 
+16. Function 2: 6407.06 
+17. Function 1: 6116.9 
+17. Function 2: 6404.6 
+18. Function 1: 6119.13 
+18. Function 2: 6399.4 
+19. Function 1: 6118.31 
+19. Function 2: 6402.57 
+20. Function 1: 6118.01 
+20. Function 2: 6403.45 
+
+Elapsed real time in integration: 42 seconds
+Nb. evaluations: 43628800
+
+Integrated flow for function 1:
+ mean: 6117.35 mean/area1: 0.942581 mean/area2: 0.942581
+ standard deviation: 1.29958 
+ coefficient of variation (std/mean): 0.000212442
+
+Integrated flow for function 2:
+ mean: 6403.98 mean/area1: 0.986745 mean/area2: 0.986745
+ standard deviation: 2.06764 
+ coefficient of variation (std/mean): 0.000322868
+
+area1: 6490 area2: 6490 
+
+
+Total elapsed real time in integration: 42 seconds (0.000700 minutes)
+> end.run <- Sys.time()
+> duration <- end.run - start.run
+> print(duration)
+Time difference of 41.57595 secs
+> 
+> 
+> # Grid: Example of the Example chapter of the manual:
+> param=list(input=1, delim=" ",  method="grid",
++   poly=list(c(1,1),c(14,14),c(11,12),c(56,57),c(4,4)), nr=5,
++   step=c(1,1))
+> 
+> start.run <- Sys.time()
+>  califlopp(file="data", dispf=1,param=param)
+CaliFloPP -  Copyright (c) 2007 - INRA
+
+Number of polygons: 66
+-------------------
+
+Parameters:
+-----------
+verbose: 0
+output: 1
+scale: 10
+maximal dispersion distances for each function: 0
+minimal dispersion distances for each function: 100
+(the dispersion is calculated between centroids,
+ for distances beyond these values)
+method:grid
+seed: 1
+x-axis step: 1 m. 
+y-axis step: 1 m.
+number of estimations: 5
+
+Polygons  1, 1
+-------------------
+
+Integrated flows at each replication:
+1. Function 1: 12195.1 
+2. Function 1: 12372.1 
+3. Function 1: 12820.4 
+4. Function 1: 12349.3 
+5. Function 1: 12374.3 
+
+Elapsed real time in integration: 0 seconds
+Nb. evaluations: 316000
+
+Integrated flow for function 1:
+ mean: 12422.2 mean/area1: 0.972006 mean/area2: 0.972006
+ standard deviation: 234.655 
+ coefficient of variation (std/mean): 0.0188899
+
+area1: 12780 area2: 12780 
+
+Polygons  14, 14
+-------------------
+
+Integrated flows at each replication:
+1. Function 1: 23273.7 
+2. Function 1: 23033.8 
+3. Function 1: 23983.3 
+4. Function 1: 23341.7 
+5. Function 1: 24077.9 
+
+Elapsed real time in integration: 4 seconds
+Nb. evaluations: 2661300
+
+Integrated flow for function 1:
+ mean: 23542.1 mean/area1: 0.976851 mean/area2: 0.976851
+ standard deviation: 461.615 
+ coefficient of variation (std/mean): 0.0196081
+
+area1: 24100 area2: 24100 
+
+Polygons  11, 12
+-------------------
+
+Integrated flows at each replication:
+1. Function 1: 162.658 
+2. Function 1: 163.422 
+3. Function 1: 165.872 
+4. Function 1: 162.507 
+5. Function 1: 168.159 
+
+Elapsed real time in integration: 1 seconds
+Nb. evaluations: 461100
+
+Integrated flow for function 1:
+ mean: 164.524 mean/area1: 0.00880276 mean/area2: 0.007391
+ standard deviation: 2.43915 
+ coefficient of variation (std/mean): 0.0148255
+
+area1: 18690 area2: 22260 
+
+Polygons  56, 57
+-------------------
+
+Integrated flows at each replication:
+1. Function 1: 133.491 
+2. Function 1: 132.062 
+3. Function 1: 129.22 
+4. Function 1: 133.036 
+5. Function 1: 134.457 
+
+Elapsed real time in integration: 1 seconds
+Nb. evaluations: 449600
+
+Integrated flow for function 1:
+ mean: 132.453 mean/area1: 0.0149159 mean/area2: 0.0107861
+ standard deviation: 2.00207 
+ coefficient of variation (std/mean): 0.0151153
+
+area1: 8880 area2: 12280 
+
+Polygons  4, 4
+-------------------
+
+Integrated flows at each replication:
+1. Function 1: 14562.6 
+2. Function 1: 14510.9 
+3. Function 1: 14647.7 
+4. Function 1: 14691.7 
+5. Function 1: 14637.7 
+
+Elapsed real time in integration: 5 seconds
+Nb. evaluations: 3551500
+
+Integrated flow for function 1:
+ mean: 14610.1 mean/area1: 0.944418 mean/area2: 0.944418
+ standard deviation: 72.3503 
+ coefficient of variation (std/mean): 0.00495206
+
+area1: 15470 area2: 15470 
+
+
+Total elapsed real time in integration: 11 seconds (0.000183 minutes)
+> end.run <- Sys.time()
+> duration <- end.run - start.run
+> print(duration)
+Time difference of 11.40593 secs
+> 
+> 
+> # Idem with R dispersion function
+> param=list(input=1, delim=" ",  method="grid",
++   poly=list(c(1,1),c(14,14),c(11,12),c(56,57),c(4,4)), nr=5,
++   step=c(1,1), dz=0, dp=100, tz=0)
+> start.run <- Sys.time()
+> # LONG: califlopp(file="data", dispf=fpollen,param=param)
+> end.run <- Sys.time()
+> duration <- end.run - start.run
+> print(duration)
+Time difference of 6.604195e-05 secs
+> 
+> 

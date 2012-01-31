@@ -1,0 +1,66 @@
+=============
+Version 0.2-2
+Date: 2012-01-31
+=============
+* Minor changes for submission to the CRAN
+
+=============
+Version 0.2-1
+Date: 2011-12-15
+=============
+* Adapt the CaliFloPP manual to RCALI
+* Changes in the C code to eliminate the warnings "deprecated"
+
+=============
+Version 0.2-0
+Date: 2011-11-10
+=============
+* Add the option 'send.and.receive' to calculate the flow in the both
+  directions.
+
+=============
+Version 0.1-1
+Date: 2010-03-10
+=============
+* Replace the read.table by scan in the function getRes:
+  scan is more performant.
+
+=============
+Version 0.1-0
+=============
+On the result-file:
+-------------------
+* Add the grid steps on the first line of the result-file,
+  when the method is grid.
+* The value ALL is no more allowed for OUTPUT_FILE_FORMAT:
+ the execution times are never written; 
+ when the method is grid, the results for each replication 
+ are no more written.
+* All the results for a pair of polygons are written on a single
+  line.
+* When the first and second polygons of the pair are not the same,
+  the results are no more repeated.
+
+About the  function "getRes":
+-----------------------------
+* The return of the "getRes" is no more a list, but a data.frame.
+
+In the function "califlopp":
+---------------------------
+* Add the parameters "warn.poly" and "warn.conv" to the
+  function "califlopp" 
+* The function "califlopp" never returns results: it is in charge
+  of the user to call "getRes".
+* The maximum number of  dispersion functions is 5 instead of 3.
+* Fix a bug when the dispersion function numbers were not 
+  consecutive numbers from 1.
+* Improve the help-file; in particular, add the default values of 
+  abser, reler, etc,..; explain how to compile and load dispersion
+  function when in C/C++; detail the content of the result-file.
+
+Miscellaneous:
+---------------
+* Add the function "sourceDir", to load all the functions.
+* Add the test: "paysage"
+ 
+
