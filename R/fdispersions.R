@@ -39,7 +39,7 @@ fpollen = function ( point)
     else {
       rr = 50
     gamma = -2.29
-#    //valeur la plus lourde -2.14, + légère - 2.56
+#    //heaviest value: -2.14, lighest: - 2.56
     K = (0.03985 / (1.0+rr**(3.12)/3.80)) / (1.0+ rr)**gamma
     rt = K * (1.0 + r)**gamma
 }      

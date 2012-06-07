@@ -76,9 +76,6 @@ listpoly=x
 
 ## Open X11 device, in adding colors,
 # when no device is already opened en rajoutant des couleurs
-# AB: 21/11/2005 Pas besoin: c'est automatique et comme colortype
-  # ne marche pas avec R.2., je l'ôte
-#  if (dev.cur() == 1) X11(colortype="pseudo.cube" )
 
 # To center in zero
   l <- range(listpoly)

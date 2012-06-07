@@ -13,7 +13,7 @@ califlopp(file="data",
 c(fpollen,fseed), param=param)
 end.run <- Sys.time()
 duration <- end.run - start.run
-print(duration)
+# print(duration)
 
 # Grid: Example of the user guide:
 param=list(input=1, delim=" ", poly=c(66,66),
@@ -23,7 +23,7 @@ start.run <- Sys.time()
 califlopp(file="data",c(1,2), param=param)
 end.run <- Sys.time()
 duration <- end.run - start.run
-print(duration)
+# print(duration)
 
 
 # Grid: Example of the Example chapter of the manual:
@@ -35,7 +35,7 @@ start.run <- Sys.time()
  califlopp(file="data", dispf=1,param=param)
 end.run <- Sys.time()
 duration <- end.run - start.run
-print(duration)
+# print(duration)
 
 
 # Idem with R dispersion function

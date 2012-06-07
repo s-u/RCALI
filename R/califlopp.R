@@ -174,7 +174,7 @@ califlopp <- function(file, dispf=c(1,2),
   if (is.numeric(dispf)) {
     dispfc <- dispf # dispfc: indices of the functions in C
     nofunc <- dispf
-    dispf <- NULL
+    dispf <- 0 # modif 6/6/2012 NULL
   }  else    {
     dispfc <- 0
     nofunc <- seq(1, length(dispf))

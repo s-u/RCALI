@@ -704,9 +704,10 @@ methodGrid::CalcR (const int poutput, int *dispfc,
   temps = difftime(time(NULL), oldTime);
   this->nbeval = nbptseval;
 
+
   if (poutput == ALL)
     {
-      Rprintf ("\nElapsed real time in integration: %g seconds\n", temps);
+      // 7/6/2012      Rprintf ("\nElapsed real time in integration: %g seconds\n", temps);
 
       Rprintf ("Nb. evaluations: %ld\n", nbptseval);
 

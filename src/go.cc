@@ -662,13 +662,14 @@ R_CheckUserInterrupt(); // allow user interruptions
 
     }				/* end switch */
 
+  /* 7/6/2012
   if ((poutput != NOTHING) && (poutput != LIGHT) && (cas != 1))
     {
       Rprintf
 	("\n\nTotal elapsed real time in integration: %g seconds (%f minutes)\n",
 	 tempstotal, (real) (tempstotal) / 1000 / 60);
     }
-
+  */
 
   ///////////////////////////////////////
   // Close the files

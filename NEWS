@@ -1,3 +1,27 @@
+
+
+=============
+Version 0.2-5
+Date: 2012-06-07
+=============
+* Compress ‘RCALIvignette.pdf’ 
+
+=============
+Version 0.2-4
+Date: 2012-06-06
+=============
+* Change to avoid passing NULL to C (not accepted since R>=2.15)
+
+=============
+Version 0.2-3
+Date: 2012-02-03
+=============
+* Up to date the references: add a file CITATION, 
+  add the reference article into the help
+  of the function "califlopp" and in the vignette.
+  Up to date the reference to R in the vignette.
+* Remove the French accents in the file DESCRIPTION
+
 =============
 Version 0.2-2
 Date: 2012-01-31

@@ -1,0 +1,27 @@
+citHeader("To cite package 'RCALI' in publications use:")
+     
+desc <- packageDescription("RCALI")
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", desc$Date)
+vers <- paste("R package version", desc$Version)
+     
+citEntry(entry="Article",
+title = "Computation of integrated flow of particles between polygons.", 
+author = personList(as.person("A. Bouvier"),
+       	 	    as.person("K. Kieu"),
+       	 	    as.person("K. Adamczyk"),
+       	 	    as.person("H. Monod")),
+  journal =	 "Environmental Modelling & Software",
+  year =	 "2009",
+  volume =	 "24",
+  number =	 "7",
+  pages =	 "843-849",
+  url = "http://www.sciencedirect.com/science/article/B6VHC-4V5XP84-1/2/3bf54f587c26d8ea3df24a47e0a6d79d",
+textVersion =
+  paste("A. Bouvier, K. Kieu, K. Adamczyk and H. Monod (2009)",
+"Computation of integrated flow of particles between polygons.",
+"Environmental Modelling & Software",
+"24(7):843-849", 
+"DOI: 10.1016/j.envsoft.2008.11.006"))
+
+citFooter("See",sQuote("citation()"),"for citing R itself.")
+

@@ -250,20 +250,13 @@ at the origin. Default in a standard configuration: 0,1,0,0,0
 \section{Side effect}{This function creates a temporary file to store the
   parameters, usually in the directory \code{tmp} of the user. This file
   is destroyed at the end of execution.} 
-\references{ The CaliFloPP software:
-  \url{http://www.inra.fr/miaj/public/logiciels/califlopp/ }
-  
- Colbach, N. and Clermont-Dauphin, C. and Meynard, J.M. \emph{Genesys: a model of the
-influence of cropping system on gene escape from herbicide tolerant rapeseed crops
-to rape volunteers. i. temporal evolution of a population of rapeseed volunteers in a
-field}. Agriculture, Ecosystems and Environnement, 83:235-253,
-2001.
-
-  Soubeyrand, S. and Enjalbert, J. and Sanchez, A. and Sache, I.
- \emph{Anisotropy, in density and in distance, of the dispersal
-   of yellow rust
-of wheat: experiments in large fields plots and estimation.}
-Analytical and Theorical Plant Pathology, 97:1315-1324, 2007.}
+\references{  - The CaliFloPP software: \url{http://www.inra.fr/miaj/public/logiciels/califlopp/} \cr
+- Main reference paper: A. Bouvier, K. Kieu, K. Adamczyk, and H. Monod. Computation of
+  integrated flow of particles between polygons. Environmental Modelling
+  & Software, 24:843--849, 2009.\cr
+- N. Colbach, and all.Genesys: a model of the influence of cropping
+system on gene escape from herbicide tolerant rapeseed crops to rape
+volunteers. Agriculture, Ecosystems and Environnement, 83:235--270, 2001. }
 \author{ A. Bouvier }
   \seealso{  \code{\link{getRes}}}
   \examples{

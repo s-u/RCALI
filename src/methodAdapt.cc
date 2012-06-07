@@ -998,9 +998,9 @@ resxp = (*dispf[this->ifunct[ifunc] - 1]) (lepoint);
   DETRU_T1 (lpolyb);
   DETRU_T1 (lpolya);
 
-
+  /* 7/6/2012
   if (poutput == ALL)
      Rprintf ("\nElapsed real time in integration: %g seconds\n",
 	      temps);
-
+  */
 }				// end CalcR 
