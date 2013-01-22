@@ -1,8 +1,8 @@
 e1fdceac8882964613eded8b0e585351 *COPYING
-ca5c90b80c55fce16e0db7b2435c461b *DESCRIPTION
+330394381112cdd6b753e8d731b25b08 *DESCRIPTION
 cc5ca6910a1a69690f0e69cc3987f4c1 *Makevars
 62a6577466ba82fca738b8fa28854704 *NAMESPACE
-0a4602b779aa0b2310ab593f5901ec88 *NEWS
+6b7d3a5f01a25301bd00d516f988cbca *NEWS
 298eba2d044d61adb9bac3c398fb7cbc *R/califlopp.R
 418d302c04510149b2459695dea1784c *R/fdispersions.R
 259c0e37eacd5869f0f9355226588d47 *R/generPoly.R
@@ -17,7 +17,7 @@ fc87c23e55944c6d64f562ad377a1a4d *R/sourceDir.R
 93cf91c7296632fcdc158e05b610435b *demo/00Index
 552ab1828c1c1c4325b0443a3aca0b64 *demo/regular.R
 1a75cd2bc36e4322f669650e54117b2d *inst/CITATION
-cebc4c6d5cedd78a13f887aae4be66a1 *inst/doc/RCALIvignette.pdf
+9a9b6dc327b83e42f5a553da756e46a8 *inst/doc/RCALIvignette.pdf
 01bc28374b4e35efd85b422f488dacf6 *inst/doc/art_ems2008.pdf
 421bc240c4283acd1ca5f549592bba41 *inst/doc/index.html
 5b9d1ec8a9f21c9a82b28b07b5d1a3af *inst/extdata/poly.txt
