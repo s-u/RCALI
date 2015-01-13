@@ -1,0 +1,44 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+RCALI is a R interface to the software CaliFloPP
+CaliFloPP was registred at the
+"Agence pour la Protection des Programmes", on the 2007/10/05
+n°IDDN.FR.001.400016.000.R.P.2007.000.20700.
+Its license is the following: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CaliFloPP LICENSE AGREEMENT
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+This software is protected by the 
+Free Software license agreement CeCILL-C,
+the text of which is given below and on the site
+http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.txt
+(see also http://en.wikipedia.org/wiki/CeCILL)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Any use should credit the authors:
+INRA - Unit MIA - Jouy-en-Josas,
+and cite the article:
+Annie Bouvier, Kiên Kiêu, Katarzyna Adamczyk et Hervé Monod,
+(2009). Computation of integrated flow of particles between polygons,
+Environmental Modelling & Software, 24:843--849
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+The name CaliFloPP must not be used to endorse or promote products
+derived from this software.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+http://www.inra.fr/miaj/public/logiciels/califlopp
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CaliFloPP includes modified versions of free software,
+created by third parties, the licenses of which
+should also be accepted. They are:
+
+1/ The license  relative to the random numbers: see src/mt19937ar.cpp
+
+2/ Some geometric computational programmes from O'Rourke,
+the license of which can be found on the site:
+http://maven.smith.edu/~orourke/books/compgeom.html
+Here is an extract:
+
+"<a
+href="http://maven.smith.edu/~orourke/books/ftp.html"> C and Java 
+code</a> is available free."

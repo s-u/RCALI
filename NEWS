@@ -1,4 +1,46 @@
 =============
+Version 0.2-14 and 0.2-15
+Date: 2015-01-13 
+=============
+* Changes to comply with the new packaging standards.
+
+=============
+Version 0.2-12 and 0.2-13
+Date: 2014-11-26
+=============
+* DESCRIPTION file: modify License declaration
+
+=============
+Version 0.2-11
+Date: 2014-11-24
+=============
+* Suppress from the delivered package extra-file RCALI-ext.R
+* Add "import(splancs)" in the NAMESPACE file and remove the 
+instructions "library(splancs)" in the R files.
+* Reduce the test data.R, because its running time may be too long
+* DESCRIPTION file: modify License declaration
+
+=============
+Version 0.2-9
+Date: 2013-03-11
+=============
+* Rename the file COPYING into LICENSE
+
+=============
+Version 0.2-8
+Date: 2013-03-08
+=============
+* Minor changes for R3.0.0
+
+=============
+Version 0.2-7
+Date: 2013-01-24
+=============
+* Fix a bug in export.listpoly:
+  export.listpoly <- function(x, filename) {
+  listpoly<-x #### add this sentence
+
+=============
 Version 0.2-6
 Date: 2013-01-22
 =============

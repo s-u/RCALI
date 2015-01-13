@@ -60,7 +60,7 @@ read1Poly (FILE * fp, char *pdelim,
       if ((iget == 0) || (strpbrk (lu, "0123456789") == NULL))
 	{
 	  sprintf (errmess, "premature end of file\n");
-	  return (ecrmess (CALI_ERPOLY1, moi, errmess));
+          return (ecrmess (CALI_ERPOLY1, moi, errmess));
 	}
 
       p = strtok (lu, pdelim);
@@ -81,6 +81,7 @@ read1Poly (FILE * fp, char *pdelim,
 
 
       nsom = 0;
+
       while ((p = strtok (NULL, pdelim)) != NULL)
 	{
 	  lucoord = atof (p);

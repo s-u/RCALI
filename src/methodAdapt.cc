@@ -140,6 +140,7 @@ methodAdapt::Initialisation ()
   this->tzero[2] = TZ3;
   this->tzero[3] = TZ4;
   this->tzero[4] = TZ5;
+ this->InitZero ();
 
   for (ifunc = 0; ifunc < MAX_NFUNCTIONS; ifunc++)
     {

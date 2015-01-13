@@ -25,7 +25,7 @@ and  should be 2, if each polygon is coded by:
 #define DEFAULT_INPUT_FORMAT 2
 
 
-#define DEFAULT_DELIM "\t"	/* Separator character on the polygons-file */
+ #define DEFAULT_DELIM "\t"	/* Separator character on the polygons-file */
 //#define DEFAULT_DELIM " "	/* Separator character on the polygons-file */
 #define COMMENT '#'		/* Introduce comments on the parameter file */
 

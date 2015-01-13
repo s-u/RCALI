@@ -228,7 +228,7 @@ lit1Param (FILE * fparam,
 {
   char texte[LGPARAM];
   int i;
-  char clu;
+  char clu=' ';
   char vallu[LGPARAM];
 
   fscanf (fparam, "%s", texte);
@@ -247,18 +247,19 @@ lit1Param (FILE * fparam,
       if (feof (fparam))
 	return (0);
     }				// end WHILE comment
+  // OTER?  if (strcmp (texte, "delim") == 0)
   if (strcmp (texte, "delim") == 0)
     {
       // Special case for the separator character of the polys file:
       // it is between quotes
-      while (!feof (fparam) && ((clu = fgetc (fparam)) != '"'))
+      while (!feof (fparam) && (int(clu = fgetc (fparam)) != int('"')))
 	{
 	  // We jump to the char. which follows the quote
 	}
       if (feof (fparam))
 	return (0);
       clu = fgetc (fparam);
-      ledelim = clu;
+      ledelim = char( clu);
       // Read the last double-quote
       clu = fgetc (fparam);
     }
@@ -511,8 +512,8 @@ califlopp_sd (int nfunct,
   // Read the parameters file
 //////////////////////////////////////////////////////////
   int ludz=0, ludp=0, lutz=0;
-  real valp;
-  char carlu;
+  real valp=0;
+  char carlu = ' ';
   int cas = 2;
   int ifunct[MAX_NFUNCTIONS];	// index from 1 of the dispersion functions
 

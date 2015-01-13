@@ -158,6 +158,7 @@ export.default <- function(x,filename)
   }
 # -----------------------------------
 export.listpoly <- function(x, filename) {
+  listpoly<-x 
   l <- length(listpoly)
   sink(filename)
   cat(l)

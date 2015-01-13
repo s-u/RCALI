@@ -1,5 +1,5 @@
 # source("moninit")
-library("RCALI")    
+ library("RCALI")    
 file <- "paysage.data"
 dispf <-  4
 param <-

@@ -220,13 +220,13 @@ califlopp <- function(file, dispf=c(1,2),
    as.character(nomficp),
    as.character(resfile),
      as.integer(dispfc),
-     dispf,  new.env())
+     dispf,  new.env(), PACKAGE = "RCALI")
 #     dispf,  parent.frame())
 
   # Delete the temporary parameters file when it is not a file
   # provided by the user
   if (!is.null(ficp) && !is.character(ficp)) {
-      unlink(nomficp)
-    }
+       unlink(nomficp)
+     }
 invisible()
 }  # end califlopp

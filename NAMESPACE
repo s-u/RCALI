@@ -1,12 +1,14 @@
-# Les points d'entree C appelés par les fonctions R;
-# Programmes de la librairie RCALI.so 
+# Les points d'entree C appelÃ©s par les fonctions R;
+# Programmes de la librairie RCALI.so
 useDynLib(RCALI, CALLcaliflopp)
-# Les fonctions R a disposition de l'utilisateur
-export(getRes,califlopp,fseed,fpollen,generPoly,generVois,crlistpoly)
-export(readpoly1,readpoly2,plot.poly,as.poly)
-export(export.listpoly,crpoly,range.listpoly,plot.listpoly)
+# pour getpoly et polymap
+import(splancs)
+export(getRes, califlopp, fseed, fpollen, generPoly, generVois, crlistpoly)
+export(readpoly1, readpoly2, plot.poly, as.poly)
+export(export.listpoly, crpoly, range.listpoly, plot.listpoly)
 # les methodes
 S3method(plot, poly)
 S3method(plot, listpoly)
 S3method(range, listpoly)
 S3method(export, listpoly)
+

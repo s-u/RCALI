@@ -142,7 +142,7 @@ ReadCoord (FILE * fp,
 	   int *a, int **ni, tPolygoni ** Poly,
 	   int *numPoly, char **nomPoly, int *xminmax, int *yminmax)
 {
-  int erreur, nsom, isom;
+  int erreur, nsom=0, isom;
   // The coordinates in real:
   real lesx[MAX_VERTICES], lesy[MAX_VERTICES];
   real lux, luy;
@@ -154,9 +154,14 @@ ReadCoord (FILE * fp,
 
   real Tol = REAL_MIN;		// For comparison of reals
 
-
+  // Initialisation
   xminmax[0] = yminmax[0] = INT_MAX;
   xminmax[1] = yminmax[1] = int (-real (INT_MAX) + 1.0);
+  for (isom=0; isom < MAX_VERTICES; isom++) {
+    lesx[isom]=0.0;
+    lesy[isom]=0.0;
+  }
+
 
   for (ipoly = 0; ipoly < npoly; ipoly++)
     {
@@ -195,6 +200,7 @@ ReadCoord (FILE * fp,
       // Remove the closure of the poly:
       // If the first and last  vertices are quasi-equal,
       // we remove the last
+
       if ((fabs (lesx[0] - lesx[nsom - 1]) <= Tol) &&
 	  (fabs (lesy[0] - lesy[nsom - 1]) <= Tol))
 	{

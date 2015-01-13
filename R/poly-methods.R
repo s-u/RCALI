@@ -10,9 +10,9 @@
 # getpoly from splancs. A call to a plot is required before.
 # -----------------------------------------------------
 crpoly <- function() {
-# Load 'splancs' if not already done:
-  if (!any(search() == "package:splancs"))
-    library(splancs)
+# Load 'splancs' if not already done: (not useful, splancs is in Depends)
+#   if (!any(search() == "package:splancs"))
+#     library(splancs)
  a<-getpoly()
 #  Click on the requested vertices with the button 1 (left)
 #  of the mouse. End  with the button 2
@@ -90,9 +90,9 @@ plot.poly <- function(x, ...) {
 # instead of the standard plot.
   poly <- unclass(x)
 
-# We load 'splancs' if not already done:
-  if (!any(search() == "package:splancs"))
-    library(splancs)
+# We load 'splancs' if not already done:  (not useful, splancs is in Depends)
+#   if (!any(search() == "package:splancs"))
+#     library(splancs)
 
   if (!is.null(attr(poly, "couleur")))
     polymap(poly, col=attr(poly, "couleur"), ...)
