@@ -1,0 +1,223 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: reduc_minkowski.fig
+%%Creator: fig2dev Version 3.2 Patchlevel 4
+%%CreationDate: Thu Sep  7 15:51:49 2006
+%%For: kkieu@bananier (kien kieu)
+%%BoundingBox: 0 0 341 486
+%%Magnification: 1.0000
+%%EndComments
+/$F2psDict 200 dict def
+$F2psDict begin
+$F2psDict /mtrx matrix put
+/col-1 {0 setgray} bind def
+/col0 {0.000 0.000 0.000 srgb} bind def
+/col1 {0.000 0.000 1.000 srgb} bind def
+/col2 {0.000 1.000 0.000 srgb} bind def
+/col3 {0.000 1.000 1.000 srgb} bind def
+/col4 {1.000 0.000 0.000 srgb} bind def
+/col5 {1.000 0.000 1.000 srgb} bind def
+/col6 {1.000 1.000 0.000 srgb} bind def
+/col7 {1.000 1.000 1.000 srgb} bind def
+/col8 {0.000 0.000 0.560 srgb} bind def
+/col9 {0.000 0.000 0.690 srgb} bind def
+/col10 {0.000 0.000 0.820 srgb} bind def
+/col11 {0.530 0.810 1.000 srgb} bind def
+/col12 {0.000 0.560 0.000 srgb} bind def
+/col13 {0.000 0.690 0.000 srgb} bind def
+/col14 {0.000 0.820 0.000 srgb} bind def
+/col15 {0.000 0.560 0.560 srgb} bind def
+/col16 {0.000 0.690 0.690 srgb} bind def
+/col17 {0.000 0.820 0.820 srgb} bind def
+/col18 {0.560 0.000 0.000 srgb} bind def
+/col19 {0.690 0.000 0.000 srgb} bind def
+/col20 {0.820 0.000 0.000 srgb} bind def
+/col21 {0.560 0.000 0.560 srgb} bind def
+/col22 {0.690 0.000 0.690 srgb} bind def
+/col23 {0.820 0.000 0.820 srgb} bind def
+/col24 {0.500 0.190 0.000 srgb} bind def
+/col25 {0.630 0.250 0.000 srgb} bind def
+/col26 {0.750 0.380 0.000 srgb} bind def
+/col27 {1.000 0.500 0.500 srgb} bind def
+/col28 {1.000 0.630 0.630 srgb} bind def
+/col29 {1.000 0.750 0.750 srgb} bind def
+/col30 {1.000 0.880 0.880 srgb} bind def
+/col31 {1.000 0.840 0.000 srgb} bind def
+
+end
+save
+newpath 0 486 moveto 0 0 lineto 341 0 lineto 341 486 lineto closepath clip newpath
+-10.1 451.8 translate
+1 -1 scale
+
+/cp {closepath} bind def
+/ef {eofill} bind def
+/gr {grestore} bind def
+/gs {gsave} bind def
+/sa {save} bind def
+/rs {restore} bind def
+/l {lineto} bind def
+/m {moveto} bind def
+/rm {rmoveto} bind def
+/n {newpath} bind def
+/s {stroke} bind def
+/sh {show} bind def
+/slc {setlinecap} bind def
+/slj {setlinejoin} bind def
+/slw {setlinewidth} bind def
+/srgb {setrgbcolor} bind def
+/rot {rotate} bind def
+/sc {scale} bind def
+/sd {setdash} bind def
+/ff {findfont} bind def
+/sf {setfont} bind def
+/scf {scalefont} bind def
+/sw {stringwidth} bind def
+/tr {translate} bind def
+/tnt {dup dup currentrgbcolor
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add srgb}
+  bind def
+/shd {dup dup currentrgbcolor 4 -2 roll mul 4 -2 roll mul
+  4 -2 roll mul srgb} bind def
+ /DrawEllipse {
+	/endangle exch def
+	/startangle exch def
+	/yrad exch def
+	/xrad exch def
+	/y exch def
+	/x exch def
+	/savematrix mtrx currentmatrix def
+	x y tr xrad yrad sc 0 0 1 startangle endangle arc
+	closepath
+	savematrix setmatrix
+	} def
+
+/$F2psBegin {$F2psDict begin /$F2psEnteredState save def} def
+/$F2psEnd {$F2psEnteredState restore end} def
+
+$F2psBegin
+10 setmiterlimit
+0 slj 0 slc
+ 0.06299 0.06299 sc
+%
+% Fig objects follow
+%
+% 
+% here starts figure with depth 55
+% Polyline
+7.500 slw
+n 4088 6504 m 4475 5188 l 3818 3984 l 2502 3597 l 1298 4254 l 911 5570 l
+ 1568 6774 l 2884 7161 l
+ cp gs col1 s gr 
+% Polyline
+n 3510 2385 m 3897 1069 l 3240 -135 l 1924 -522 l 720 135 l 333 1451 l
+ 990 2655 l 2306 3042 l
+ cp gs col1 s gr 
+% Ellipse
+ [60] 0 sd
+n 2111 1265 1655 1655 0 360 DrawEllipse gs col1 s gr
+ [] 0 sd
+% Polyline
+ [60] 0 sd
+gs  clippath
+517 765 m 501 822 l 647 862 l 540 802 l 663 804 l cp
+2102 1261 m 2118 1204 l 1972 1164 l 2080 1225 l 1956 1222 l cp
+eoclip
+n 2096 1229 m
+ 524 798 l gs col1 s gr gr
+ [] 0 sd
+% arrowhead
+n 1956 1222 m 2080 1225 l 1972 1164 l 1956 1222 l  cp gs col1 1.00 shd ef gr  col1 s
+% arrowhead
+n 663 804 m 540 802 l 647 862 l 663 804 l  cp gs col1 1.00 shd ef gr  col1 s
+% Ellipse
+ [60] 0 sd
+n 2700 5382 1655 1655 0 360 DrawEllipse gs col1 s gr
+ [] 0 sd
+% Polyline
+ [60] 0 sd
+gs  clippath
+1106 4882 m 1090 4939 l 1236 4979 l 1129 4919 l 1252 4921 l cp
+2691 5378 m 2707 5321 l 2561 5281 l 2669 5342 l 2545 5339 l cp
+eoclip
+n 2685 5346 m
+ 1113 4915 l gs col1 s gr gr
+ [] 0 sd
+% arrowhead
+n 2545 5339 m 2669 5342 l 2561 5281 l 2545 5339 l  cp gs col1 1.00 shd ef gr  col1 s
+% arrowhead
+n 1252 4921 m 1129 4919 l 1236 4979 l 1252 4921 l  cp gs col1 1.00 shd ef gr  col1 s
+% Polyline
+ [60] 0 sd
+n 3445 2099 m
+ 3370 664 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3445 2104 m
+ 3545 424 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 3445 2094 m
+ 3890 1069 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2717 5361 m
+ 3732 4091 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2712 5356 m
+ 3857 4056 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2717 5351 m
+ 4477 5191 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2717 5356 m
+ 4102 6456 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2722 5356 m
+ 3932 6536 l gs col0 s gr  [] 0 sd
+% Polyline
+ [60] 0 sd
+n 2722 5356 m
+ 2957 6476 l gs col0 s gr  [] 0 sd
+% Polyline
+n 3734 4084 m 4261 3941 l 4571 4208 l 4924 4791 l 4602 5850 l 4391 6353 l
+ 3932 6532 l 2947 6470 l 2358 6216 l 3064 4499 l
+ cp gs col0 s gr 
+% Polyline
+n 3365 662 m 3000 1504 l 3438 2095 l 4028 2367 l 4865 2347 l 5329 2162 l
+ 5548 1690 l 5289 788 l 4918 197 l 4254 77 l 3710 197 l
+
+ cp gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 50
+% Ellipse
+7.500 slw
+n 2706 5351 23 23 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Polyline
+n 1007 5682 m 782 6177 l 1142 6762 l 1682 6627 l 2042 5772 l 1457 5502 l
+
+ cp gs col0 s gr 
+% Polyline
+n 2706 5354 m 2040 5769 l 1690 6623 l 2680 6687 l 3003 5614 l
+ cp gs col0 s gr 
+% Ellipse
+n 2097 1218 23 23 0 360 DrawEllipse gs 0.00 setgray ef gr gs col0 s gr
+
+% Polyline
+n 2097 1221 m 1737 1671 l 2187 2256 l 3042 2256 l 2772 1356 l
+ cp gs col0 s gr 
+% Polyline
+n 398 1549 m 173 2044 l 533 2629 l 1073 2494 l 1433 1639 l 848 1369 l
+
+ cp gs col0 s gr 
+% here ends figure;
+$F2psEnd
+rs
+showpage

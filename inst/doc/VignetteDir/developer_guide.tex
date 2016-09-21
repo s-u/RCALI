@@ -1,0 +1,345 @@
+\chapter{Implementation}
+
+\section{Programme steps}
+
+The main  steps have been described from the user's point of view
+in Section~\ref{programme:does}.
+Here, they are sketched
+at the programming level. 
+
+
+
+\subsection{Preprocessing}
+Function \texttt{ReadPoly}:
+\begin{enumerate}
+\item
+Read the polygons file and 
+convert the coordinates into integers (-$>$\footnote{\label{ffr}Arrow is
+  for a call to a subroutine.}\texttt {ReadCoord});
+\item
+Relocate the landscape (-$>$ \texttt {TranslatedParcel});
+\item
+For each polygon:
+\enumerate
+\item
+remove aligned vertices and vertices forming a sharp spike;
+\item
+create convex subpolygons:
+first, determine the essential diagonals, i.e
+the diagonals which split the polygon into convex parts 
+(-$>$ \texttt {Triangulate}),
+ and then determine and store the convex subpolygons ((-$>$  \texttt  {HMAlgor}); 
+\item
+compute areas   (-$>$ \texttt {Area2}).
+\end{enumerate}
+
+\subsection{Calculation steps}
+
+The function \texttt{suite} pilots the calculations process.
+It realizes the following tasks:
+\begin{enumerate}
+\item
+Create an object, \texttt {methode}, of class \texttt {methodGrid}
+or \texttt {methodAdapt}.
+\item
+Call its method \texttt {VerifArgu} to verify its attributes.
+\item
+Pilot the loop on the required pairs of polygons:
+for each of them, call the function \texttt {go}
+which invokes
+the methods \texttt {CalcR}
+on  \texttt {methode} to perform the calculations,
+\texttt {Print} to output the results on the screen,
+and \texttt {PrintFic} to output them on a result-file.
+
+\end{enumerate}
+
+\subsection{Calculation by the grid method}
+
+The method \texttt {CalcR}
+of the class \texttt {methodGrid} is summarized by 
+the following algorithm:
+
+(The names of the devoted functions are between square brackets.)
+ 
+\begin{algorithm}
+  \caption{methodGrid::CalcR}
+  \label{algo:grid}
+\KwData{A pair of polygons $A$ and $B$, $nf$ individual  dispersal functions, user-defined parameters.}
+\KwResult{Dispersal estimations from $A$ to $B$ by the
+ grid method.}
+Calculation of $mindist$, the minimal distance between the polygons.\\
+\ForEach {dispersal function $\phi$ }{
+\If{$mindist \geq$ threshold for function annulment}
+{$result=0$}
+\If{$mindist \geq$ threshold for calculation between centroids}
+{$t$ = distance between centroids;  $result= \phi(t) \times area(A)
+  \times area(B)$}
+}
+\tcp{In the other cases: one function at least should be integrated}
+
+    \ForEach{pair of convex subpolygons $A_i$ and $B_j$ in $A$ and $B$}{
+      Compute and store their Minkowski sum: $sommeM_{ij}$ [  \texttt{SommeMinkowski}];
+      }
+    \ForEach{ replication}{
+      \ForEach{ pair of convex subpolygons $A_i$ and $B_j$}{
+        Grid generation  [  \texttt{Integration}]:\\
+        \ForEach{point $t$ of the grid}{
+          \If{$t \in sommeM_{ij}$ [ \texttt{InPolyConvex}]}{
+            $ar=area(A_i \cap (B_j - t))$;
+            [  \texttt{ConvexIntersect}] \\
+            \ForEach{ dispersal function $\phi$ to be integrated}{
+              $result += \phi(t) \times ar$; 
+              }
+              }
+              }
+}
+}
+Compute the final results: means over the replications, standard deviation.
+\end{algorithm}
+
+\newpage
+\subsection{Calculation by the cubature method}
+
+The algorithm~\ref{algo:cub}
+summarizes the tasks realized by
+the method \texttt {CalcR} of
+the \texttt{methodAdapt} class
+(the names of the devoted functions are between square brackets).
+
+$octo_{\phi}$ stands for the smallest octogon centered
+  in (0,0) which includes the circle of radius equal
+to the distance beyond which the dispersal function
+$\phi$ becomes nul;
+$octo_{\phi}$ is an
+attribute of the \texttt{methodAdapt} class and
+ is created by the class constructor.
+
+
+\begin{algorithm}
+  \caption{methodAdapt::CalcR}
+  \label{algo:cub}
+\KwData{A pair of polygons $A$ and $B$, $nf$ individual  dispersal functions, user-defined parameters.}
+\KwResult{Dispersal estimations from $A$ to $B$ by the
+cubature method.}
+Calculation of $mindist$, the minimal distance between the polygons.\\
+\ForEach {dispersal function $\phi$ }{
+\If{$mindist \geq$ threshold for function annulment}
+{$result=0$}
+\If{$mindist \geq$ threshold for calculation between centroids}
+{$t$ = distance between centroids;  $result = \phi(t) \times area(A)
+  \times area(B)$}
+\tcp{In the other cases: integration should be done}
+
+  $stvertce=\emptyset; result=0$\;
+    \ForEach {pair of convex subpolygons $A_i$ and $B_j$ of $A$ and
+    $B$}{
+      Compute and store the Minkowski sum: $sommeM_{ij}$; [ \texttt{SommeMinkowski}] \\
+      \eIf{dispersal has no limit }{
+        $S = sommeM_{ij}$\;
+        }
+{
+\tcp{no dispersal beyond a given distance }
+ $S = sommeM_{ij} \cap octo_{\phi}$
+[ \texttt{TConvexIntersect}]\;
+}
+\If{$S \neq \emptyset$}{
+\eIf{$(0,0) \in S$ \text{[ \texttt{InPolyConvex}]}}{
+         $stvertce +=$  triangulation of $S$ from $(0,0)$ [ \texttt{Triangulate0}]\;}{
+         $stvertce +=$  triangulation  of $S$ from any vertex
+          [ \texttt{Triangulate}] \;}
+} 
+} \tcp{End of the loop over $A_i$, $B_j$}
+Integration on the $stvertce$ triangles
+for function $\phi$ [ \texttt{Adapt::Integration}];
+} \tcp{End of the loop over the functions}
+\end{algorithm}
+
+\newpage
+\section{Data structures}
+\label{list:data}
+
+The main data structures are described
+in the following array:
+
+\footnotesize
+\begin{tabular}{|p{1.5cm}|p{3.5cm}|p{3.5cm}|p{5cm}|} \hline
+{\bf Name} & {\bf Dimension} & {\bf Type} & {\bf Content} \\ \hline
+Poly & npoly, nspoly, nvert, DIM &   tPolygoni (integer) & Polygons
+coordinates, counterclockwise sorted, non-closed polygons  \\ \hline
+ni & npoly, nspoly &   integer & ni$_{i,j}$: number of vertices 
+in the subpolygon $j$ of the polygon $i$ \\ \hline
+a & npoly &  integer & a$_i$: number of convex subpolygons
+of the polygon $i$  \\ \hline
+vertices & structure & tVertex (integer) & Linked list of the
+ordered vertices of a polygon. Each element contains: \\ \cline{2-4}
+ & V[DIM] & integer  & - coordinates of a vertex,  \\ \cline{2-4}
+ & next & & - pointer to the next vertex
+or to the head of the list if none, \\\cline{2-4}
+& prev & & - pointer to the preceding vertex
+or to the head of the list if none, \\\cline{2-4}
+& vnum  & integer & - vertex indices   \\ \hline
+sommeM & nvert, DIM & tPolygoni (integer) &   Minkowski Sum \\ \hline
+intersection & id. as vertices & tdVertex (real) & Intersection of polygons \\ \hline
+\end{tabular}
+\newline
+\noindent
+npoly: number of polygons \\
+nspoly: number of convex subpolygons in a polygon\\
+nvert: number of vertices in a polygon\\
+DIM: space dimension (here =2).
+
+\normalsize
+
+\newpage
+\section{Functions list }
+\label{liste:prog}
+Some important functions are listed here.
+
+(Words in {\em italic} refer to data structures.)
+
+\footnotesize
+\begin{tabular}{|p{2.5cm}|p{3.5cm}|p{7cm}|} \hline
+ \hline
+{\bf Function name} & {\bf File name} & {\bf
+  Fonction} \\ \hline
+ecrmess & util.cpp & Error message output and return to the calling
+programme \\ \hline
+libMem & util.cpp & Memory de-allocation \\ \hline
+califlopp\_sd & fluxsd.cpp & Pilot \\ \hline
+suite & go.cpp & Pilot the loop over the pairs of polygons \\ \hline
+go & go.cpp & Pilot the treatment of one pair of polygons \\ \hline
+\hline
+read1Poly, read2Poly & read1Poly.cpp & Read the coordinates in format
+1 and 2, resp. \\ \hline
+ReadCoord  & readPoly.cpp & Read the polygons-file; verify the coordinates; scale
+multiplication of the coordinates\\ \hline
+ReadVertices & readPoly.cpp & Create {\em vertices}  \\ \hline
+ReadPoly  & readPoly.cpp &  Create {\em Poly} with: \\
+& & - aligned vertices removal  \\
+& & - non-convex polygons splitting  \\ 
+& & - areas computation \\ \hline
+TranslateParcel & readPoly.cpp & Relocation of the polygons \\ \hline
+\hline
+ConvexIntersect & intersection.cpp & Convexity test and creation of
+{\em intersection}  \\ \hline
+Triangulate, HMAlgor, Area2 & geom.cpp &  Programmes of geometric
+computation \\ \hline
+SommeMinkowski & zoneintegration.cpp & Compute {\em sommeM}  \\
+\hline
+genrand\_real2 &mt19937ar.cpp & Random numbers generation$^1$ \\
+ \hline
+f0,f1,fX & functions.cpp & Individual dispersal functions \\ \hline
+f\_ &  methodAdapt.cpp & The integrand for cubature method \\ \hline
+Integration & methodGrid.cpp, &\\
+& methodAdapt.cpp & Integration  \\ \hline
+CalcR  & methodGrid.cpp, &\\
+& methodAdapt.cpp & Compute one result   \\ \hline
+Print, PrintFic & methodGrid.cpp, &\\
+& methodAdapt.cpp & Output results on
+screen and on file, resp.  \\ \hline
+\hline
+\end{tabular}
+\normalsize
+\paragraph{}
+ See reference \cite{Matsumoto:1998}.
+
+\paragraph{\textbf{Error codes:}}
+The list and meaning of the errors codes can be found
+in the file \texttt{calierror.h}.
+
+\chapter{How to Modify }
+
+It may be useful to know how to modify some parts.
+Among them:
+
+\begin{itemize}
+\item
+The individual dispersal functions:
+see~Section~\ref{modifyfunctions}.
+\item
+The format of the polygons-file:
+see the files \texttt{read1Poly.cpp}
+and \texttt{read2Poly.cpp}.
+
+\item
+In interactive mode, the dialogue with the user:
+see the file \texttt{fluxad.cpp},
+and the \texttt{ReadArgu} method in the files
+\texttt{methodGrid.cpp} and \texttt{methodAdapt.cpp}.
+
+
+\item
+Screen output:
+see the file \texttt{go.cpp},
+and the \texttt{Print} method in the files
+\texttt{methodGrid.cpp} and \texttt{methodAdapt.cpp}.
+
+
+\item
+File output:
+output on the result-file depend on the constant
+OUTPUT\_FORMAT set in the file \texttt{caliconfig.h}.
+They are carried on by
+the \texttt{suite} function
+and by the \texttt{PrintFic} methods in the files
+\texttt{methodGrid.cpp} and \texttt{methodAdapt.cpp}.
+
+\item
+Erroneous polygons treatment:
+the identifiers of the erroneous polygons
+are made negative by the \texttt{ReadPoly}
+function.
+Their treatment depends on the constant
+ERR\_POLY set in the file \texttt{caliconfig.h}.
+
+\item
+Memory allocation:
+memory allocation is made via the macros CREER and NEW and
+de-allocation  via the macros DETRU and FREE; they are coded in the
+file
+\texttt{calimacros.h}.
+
+\item
+Random number generator:
+see the variable COPTIONS2 in the file \texttt{obj/subdir.mk}
+and the corresponding code in \texttt{methodGrid.cpp}.
+
+\item
+Computing time measurement:
+ see the file \texttt{timing.cpp}.
+\item
+Estimation of several integrals by the cubature method:
+this possibility can be added
+when  several integrals  have enough  similarity.
+Estimation of all of them
+can be made in one call. It is less time consuming.
+For that, modify:
+\begin{itemize}
+\item
+the function \texttt{f\_}  in the file \texttt{methodAdapt.cpp}:
+the vector  \texttt{funvls}  should contain as many results
+as integrals on output.
+\item
+the function \texttt{CalcR} in the file \texttt{methodAdapt.cpp}:
+the first argument of the \texttt{Adapt} constructor should be
+ equal to
+the number of integrals. 
+\item
+the output operator in the file
+\texttt{adapt/Adapt.h}:
+it
+should print as many results and absolute errors as integrals.
+\end{itemize}
+\end{itemize}
+
+After alteration of the source code, recompilation is required:
+see~paragaph~\ref{howchanges}.
+
+% %%% 
+% %%% 
+% %%% %%% Local Variables: 
+% %%% %%% mode: latex
+% %%% %%% TeX-master: t
+% %%% %%% End: 
+

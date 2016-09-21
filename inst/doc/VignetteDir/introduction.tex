@@ -1,0 +1,139 @@
+\chapter{Introduction}
+\label{introduction}
+\section{An application: Pollen and seed dispersal between fields}
+The development of genetically modified (GM) plants has triggered much
+research to study how different types of agriculture can co-exist on a
+given landscape. In particular, several models have been developed and
+implemented to quantitatively describe and predict the risks of
+contamination of non-GM fields by GM fields, such as Genesys for oilseed
+rape \cite{Colbach1:2001,Colbach2:2001}.
+
+A key stage in models such as Genesys consists in calculating the pollen
+and seed flow between two fields $A$ and $B$. In Genesys, this
+calculation is performed by integrating a plant-to-plant (or individual)
+dispersal function $\phi$ over all emitting plants in $A$ and all
+receiving plants in $B$, where $\phi$ is a function of the
+distance between the emitting and the receiving plants. The individual
+dispersal functions $\phi$ have been previously determined by
+specifically designed experiments (see \emph{e.g.} \cite{lavigne:1998}).
+In practice, because the plant density is high in a cultivated field,
+the integration is made continuously over $A$ and $B$.
+
+The calculation of field-to-field pollen and seed dispersals is a key
+stage not only for biological but also for numerical reasons. First, it
+is a non-trivial programming task. Relatively simple algorithms can be
+imagined for integrating the dispersal function over pairs of fields,
+but they may not be able to cope properly with the large diversity of
+field sizes and shapes which are met in actual agricultural landscapes.
+Second, the calculation requires a lot of computing time and so it
+imposes limits on the size of the landscapes one wants to study. The
+initial motivation for developing \verb+CaliFloPP+ was precisely to make the
+calculation of pollen and seed flow in Genesys more general and more
+efficient.
+
+\section{What CaliFloPP calculates~: integrated flow of particles between polygons} 
+
+Pollen and seed dispersal between fields is just an example of phenomena
+involving flows of particles between polygonal objects. Other examples
+include the flow of pathogen spores between fields in plant
+epidemiology, or the flow of polluting particles between sites in
+environmental applications.
+
+\verb+CaliFloPP+ is a general programme, which makes it possible to
+calculate such global flows efficiently between pairs of polygons, by
+integration of an individual dispersal function. When running
+\verb+CaliFloPP+, the basic entries that one needs to specify are~:
+\begin{itemize}
+\item the coordinates of the vertices of each polygon~;
+\item the individual dispersal function $\phi$.
+\end{itemize}
+
+In \verb+CaliFloPP+, the polygons are considered as \emph{continuous}
+and \emph{homogeneous} 
+sources of emission and continuous and  homogeneous
+reception areas. The individual
+dispersal function $\phi$ between two points $x$ and $y$ in $\R^2$ is
+assumed to depend on $x_2-x_1$ and $y_2-y_1$, so that the argument of
+$\phi$ is a two-dimensional vector. As a special case, the dispersal may
+be isotropic so that $\phi(y-x)$ depends on $\sqrt{(y_1-x_1)^2 +
+  (y_2-x_2)^2}$ only. 
+ 
+For each pair of polygons $A$ and $B$, \verb+CaliFloPP+ calculates
+the integrated flow from $A$ to $B$, that is
+\begin{equation}
+  \label{eq:def:A}
+  \A(A,B) = \int_A\int_B\!\! \phi(y-x)\,dy\,dx. 
+\end{equation}
+
+\section{What CaliFloPP can help to calculate~: an example}
+
+In many applications, the calculations performed by \verb+CaliFloPP+
+will just represent an initial step, making time-consuming calculations
+once and for all before simulating a more complex space-and-time model.
+
+Consider for example a landscape constituted of non-GM oilseed rape
+fields, GM oilseed rape fields, and other fields. Then the expected rate
+of contamination (due to pollen only, for simplicity) on a given non-GM
+field $B$ can be defined as the proportion of pollen received by $B$
+which has been emitted by neighbouring GM fields. In the present
+context, this is equal to
+\begin{equation}
+\label{eq:contamination}
+  {\cal C} = \frac{\sum_{{\mathrm GM fields }A} \A(A,B)}%
+{\sum_{{\mathrm GM fields }A} \A(A,B) + \sum_{{\mathrm non-GM fields }A} \A(A,B)}.
+\end{equation}
+Thus, calculating the expected rate of contamination for all non-GM
+fields requires to calculate $\A(A,B)$ for all pairs of fields with
+$A$ an oilseed rape field and $B$ a non-GM oilseed rape field. In
+Genesys, such calculations are performed over several years with
+different allocations of crops from one year to the next one. Thus,
+there is an interest in calculating $\A(A,B)$ over all pairs of fields
+once and for all.
+
+Note that a more general form of equation (\ref{eq:contamination}) is
+\begin{equation*}
+  {\cal C} = \frac{\sum_{{\mathrm GM fields }A} \alpha_A \A(A,B)}%
+{\sum_{{\mathrm GM fields }A} \alpha_A\A(A,B) + \sum_{{\mathrm non-GM
+      fields }A} \alpha_A\A(A,B)},
+\end{equation*}
+where $\alpha_A$ denotes the quantity of pollen per squared meter
+emitted by field $A$ and $\phi(y-x)$ must be interpreted as the
+\emph{proportion} of particles emitted at point $x$ that arrives
+at point $y$. As this example shows, the \verb+CaliFloPP+ calculations
+are perfectly compatible with models involving different levels of
+emission or reception between polygons.
+
+\section{The main steps of the CaliFloPP calculations}
+According to equation (\ref{eq:def:A}), the calculation of
+$\mathcal{A}(A,B)$ requires a four-dimensional integration, since $A$
+and $B$ are both two-dimensional. When $\mathcal{A}(A,B)$ must be
+calculated for many pairs of polygons, this represents a heavy lot of
+computing time.
+
+\medskip
+
+In fact, the first step in \verb+CaliFloPP+ consists in reducing the
+dimension of the integral from 4 to 2. This is done by taking profit of
+the invariance properties of the dispersal function
+(see~Chapter~\ref{sec:reduction:dimension}). 
+
+The price to pay for the dimension reduction is the arrival of
+geometrical quantities in the reduced integral, whose calculations are
+not trivial. These calculations, however, can be performed efficiently
+provided tools from \emph{computational geometry} are used. This is
+explained in Chapter \ref{sec:geom:algo}.
+
+In order to apply some of these methods, it is necessary that the
+polygons be convex. Chapter~\ref{sec:decompo} describes a method to
+partition any polygon into convex sub-polygons.
+
+\medskip
+
+The second step consists in the integration \emph{per se}, for which
+several approaches have been considered.
+Two of them have been implemented in \verb+CaliFloPP+:
+one based on regular grids over the domain of integration,
+the other based on cubature integration methods.
+They are described in Chapter~\ref{sec:integrale}.
+
+

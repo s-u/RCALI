@@ -1,0 +1,26 @@
+(TeX-add-style-hook "biblio"
+ (lambda ()
+    (LaTeX-add-bibitems
+     "Colbach1:2001"
+     "Colbach3:2001"
+     "Colbach2:2001"
+     "Conroy:1967"
+     "Cranley:1976"
+     "Cubpack:1999"
+     "Cubpack:1997"
+     "deBerg:2000"
+     "Devaux:2006"
+     "Genz:1980"
+     "Klein:2000"
+     "Klein:2006"
+     "Korobov:1957"
+     "Korobov:1963"
+     "Kuonen"
+     "NAG"
+     "ORourke:1998"
+     "Press:1988"
+     "Preparata:1988"
+     "REFR"
+     "vanDoren:1976"
+     "Ying:2005")))
+

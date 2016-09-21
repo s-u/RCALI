@@ -2,7 +2,7 @@
 \alias{RCALI-package}
 \docType{package}
 \title{
-Calculate the flow of particles between polygons
+Calculation of the Integrated Flow of Particles Between Polygons
 }
 \description{
  Calculate the flow of particles between polygons by two integration methods: integration by a cubature method and integration on a grid of points.

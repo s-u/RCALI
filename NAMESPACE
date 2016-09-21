@@ -3,6 +3,8 @@
 useDynLib(RCALI, CALLcaliflopp)
 # pour getpoly et polymap
 import(splancs)
+importFrom("grDevices", "rainbow")
+importFrom("graphics", "par", "plot", "text")
 export(getRes, califlopp, fseed, fpollen, generPoly, generVois, crlistpoly)
 export(readpoly1, readpoly2, plot.poly, as.poly)
 export(export.listpoly, crpoly, range.listpoly, plot.listpoly)

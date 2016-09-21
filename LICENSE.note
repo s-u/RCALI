@@ -32,13 +32,8 @@ CaliFloPP includes modified versions of free software,
 created by third parties, the licenses of which
 should also be accepted. They are:
 
-1/ The license  relative to the random numbers: see src/mt19937ar.cpp
+1/ The license  relative to the random numbers: see src/mt19937ar.cc
 
 2/ Some geometric computational programmes from O'Rourke,
 the license of which can be found on the site:
 http://maven.smith.edu/~orourke/books/compgeom.html
-Here is an extract:
-
-"<a
-href="http://maven.smith.edu/~orourke/books/ftp.html"> C and Java 
-code</a> is available free."

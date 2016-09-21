@@ -1,0 +1,757 @@
+
+
+
+
+\documentclass[a4paper,twoside,openright]{report}
+
+\usepackage[utf8]{inputenc} 
+\usepackage[english]{babel}
+\usepackage{amssymb,amsfonts}
+\usepackage[dvips]{graphicx}
+\usepackage{fancyhdr}
+\usepackage[linesnumbered,ruled]{VignetteDir/algorithm2e}
+\usepackage{epsfig}
+\usepackage{rotating,booktabs}
+\usepackage{graphicx,subfigure}
+\usepackage{amsmath}
+\usepackage{path}
+\usepackage[colorlinks=true,anchorcolor=blue,backref=page,ps2pdf]{hyperref}
+
+\usepackage{/usr/local/lib64/R/share/texmf/tex/latex/Sweave}
+%\usepackage{Sweave}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{formatcom={\color[rgb]{0.56,0,0}}}
+ \DefineVerbatimEnvironment{Soutput}{Verbatim}{formatcom={\color[rgb]{0,0,0.56}}}
+% le code R apparaitra en rouge et la sortie R en bleu
+
+\textwidth=15cm
+\evensidemargin=7mm
+\oddsidemargin=7mm
+
+%\newenvironment{code}{\addtolength{\hoffset}{-1.5cm}}
+
+
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries\leftmark}
+\renewcommand{\headrulewidth}{0.5pt}
+\addtolength{\headheight}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhead{}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+
+%% Définitions d'environnements
+\newenvironment{rfrag}{\begin{verbatim}}{\end{verbatim}}
+
+%% Macros diverses
+\newcommand{\A}{{\cal F}}
+\newcommand{\norme}[1]{\left\| #1 \right\|}
+\newcommand{\aire}{\mathrm{area}}
+\newcommand{\califlopp}{\verb+CaliFlopp+} 
+\newcommand{\CaliFlopp}{\verb+CaliFlopp+}
+\newcommand{\RCALI}{\verb+RCALI+}
+\def \R{\hbox{I}\!\hbox{R}}
+\newcommand{\funname}[1]{\textsf{#1}} % pour les noms de fontion
+\newcommand{\varname}[1]{\textsf{#1}} % pour les noms de variable
+%\date{28 mai 2002, revue en nov. 2006}
+
+\begin{document}
+
+% \VignetteIndexEntry{RCALI}
+\thispagestyle{empty}
+
+%\begin{present}
+\begin{figure}
+  \begin{center}
+     \begin{tabular}{p{8cm}c}
+       \scalebox{0.8}{\includegraphics[width=5cm]{VignetteDir/logo/logoMIA.eps}} &
+       \scalebox{0.8}{\includegraphics[50,640][190,730]{VignetteDir/logo/logoinra.eps}}
+
+
+   \end{tabular}
+  \end{center}
+\end{figure}
+
+\centerline{\large INRA}
+\vspace{0.5mm}
+\centerline{\large UR341 Mathématiques et informatique appliquées}
+\vspace{0.5mm}
+\centerline{\large Domaine de Vilvert}
+\vspace{0.5mm}
+\centerline{\large F-78350 Jouy-en-Josas}
+\vspace{2cm}
+\begin{center}
+{\Large{\bfseries  RCALI }}
+\end{center}
+\centerline{Version 0.2-0; 2011-11-08}
+
+\vspace{1cm}
+\begin{center}
+\centerline{\Large R-package to Calculate the Integrated Flow of Particles
+    between Polygons}
+\end{center}
+\vspace{2cm}
+\centerline{\large  Annie Bouvier}
+\vspace{1mm}
+\vspace{1mm}
+\vspace{1.5cm}
+\centerline{\large \today}
+\vspace{1.5cm}
+
+\include{VignetteDir/abstract}
+\include{VignetteDir/credits}
+
+
+
+\tableofcontents
+
+\include{VignetteDir/introduction}
+
+
+\part{Methods for Particle Flow Integration}
+% Ne pas mettre setcounter qui renumérote les chapitres 
+% à partir de zéro dans chacune des parties car, alors, le sommaire
+% dans le fichier pdf construit par pstopdf n'est pas bon.
+%\setcounter{chapter}{0}
+
+\include{./VignetteDir/integral_reduction}
+\include{./VignetteDir/geometric_computation}
+\include{./VignetteDir/multidimensional_integration}
+\part{Example}
+\include{./VignetteDir/example}
+
+
+\part{Customization Guide}
+\include{./VignetteDir/installation_guide}
+
+\part{User Guide}
+
+\chapter{The polygons-file}
+\label{polygon-file}
+In accordance with the gene flow application and the dispersal
+functions defined in~Section~\ref{sec:individualfunctions},
+we assume in the following that 1 unit in the polygon coordinates
+corresponds to 1~m.
+\section{Constraints on the polygons}
+\begin{itemize}
+\item
+Polygons should be without holes.
+\item
+Small and  narrow polygons (approximately
+less than 1~m$^2$) should be avoided
+because of possible numerical  problems,
+as well as polygons with
+many obtuse angles because
+their decomposition into convex subpolygons
+may not be possible.
+
+
+\item
+Shape and size restrictions  are set
+in the  file \texttt{src/caliconfig.h}.
+They are:
+\begin{verse}
+ MAX\_VERTICES, the  maximal number of vertices per polygon,\\
+ MAX\_TRIANGLES, the maximal number of convex subpolygons per polygon,\\
+ SAFE, the maximal extent of the landscape.
+\end{verse}
+
+\end{itemize}
+
+\textbf{Notes}:
+There is no limit in the number of polygons
+(except possible memory limitation)
+and the polygons may intersect.
+
+
+\section{Syntax of the polygons file}
+\label{polyfile}
+
+The polygons file contains the coordinates of the polygons.
+It should
+respect the following rules:
+
+\begin{itemize}
+\item
+It  should be
+an ASCII-file.
+\item
+Vertices should be  ordered  clockwise.
+\item
+The polygons may be closed or not.
+
+
+\item
+The coordinates may be negative or null.
+The number of decimal digits taken into
+account depends on the constant
+\texttt{SCALE\footnote{\label{fd}Constant set in the file \texttt{src/caliconfig.h}}}.
+(See~Section~\ref{Preprocessing}).
+
+\item
+The  values separator  is the character
+DEFAULT\_DELIM$^\text{\ref{fd}}$
+set in the file \texttt{src/caliconfig.h}.
+It can be changed by the component
+\texttt{delim} of the argument \texttt{param}
+of the main function \textbf{califlopp}, of \verb+RCALI+.
+
+The separator character can be repeated any number of times
+between successive values.
+
+\item
+\label{formats}
+Two formats for the 
+\hypertarget{POLY}{polygons file} are catered for:
+
+The default format is defined by the
+constant DEFAULT\_INPUT\_FORMAT$^\text{\ref{fd}}$.
+It can be changed by the component
+\texttt{input} of the argument \texttt{param}
+of the main function \textbf{califlopp}, of \verb+RCALI+.
+\item
+\label{format}
+In format 1, there are two lines per polygon: on the first one,
+    an identifier (a positive
+    integer),   followed by the x-coordinates,
+    on the second one, the same identifier
+    followed by the y-coordinates. The function R
+    \texttt{export.listpoly} generates such a file from R structures
+\item
+In format 2, there are three lines per polygon: on the first one,
+    an identifier (a positive
+    integer),   followed by a name for the polygon and
+    by the number of its vertices, on the second one, the x-coordinates,
+    and on the third one, the y-coordinates.\\
+The polygon names may consist of several words, 
+as long as these words are not separated by
+the values separator character.
+
+\end{itemize}
+
+\textbf{Note:}
+
+If the number of polygons set on the first line, \texttt{npoly},
+is less than the effective number, only the 
+first \texttt{npoly} polygons will be treated.
+
+
+\chapter{Input}
+\label{input}
+The argument \texttt{dispf} of the main function of \verb+RCALI+, \textbf{califlopp}, describes the dispersal functions.
+The argument \texttt{param}  describes the other entries.
+
+\section{The dispersal functions}
+The required dispersion functions can be described by two different ways in the vector  argument \texttt{dispf}:
+\begin{enumerate}
+\item
+By vector of integers, when the dispersion functions are programmed
+in C (their source is  in the file \texttt{RCALI/src/functions.cc}) and
+compiled.
+By default, 1 is for dispersal of oilseed rape pollen, 2 for dispersal of oilseed rape seed (dispersals of oilseed rape are the ones defined in GeneSys - see~\cite{Colbach1:2001} and \cite{Colbach2:2001}), 3 for the constant function, 4 for an anisotropic version of the dispersal of yellow rust of wheat defined in Soubeyrand and all -
+see~\cite{Papaix:2011}, 5 for a discontinuous function.
+Details and instructions to modify them are given in the online help of \textbf{califlopp}.
+\item
+By R functions. The user defines the dispersal functions  in R functions.
+\end{enumerate}
+
+\section{The parameters}
+Parameters  can be described in the list argument \texttt{param}.
+Default values are provided. 
+Details and default values can be found in
+the online help  of \textbf{califlopp}.
+Its components are:
+\begin{itemize}
+\item
+\textbf{input}
+The format of the polygons-file: 1 or 2 (see~\ref{formats}).
+\item
+\textbf{delim}
+Character separator between values in the polygons-file.
+\item
+\textbf{method}
+String equal to \texttt{cub} for cubature method, \texttt{grid} for the grid method. 
+\item
+\textbf{dz}
+Integer vector, whose length is greater or equal to the number of required dispersion functions. \texttt{dz[i]} is the distance in meters beyond which the ist dispersion function is considered as nul. 
+\item
+\textbf{dp}
+Integer vector, whose length is greater or equal to the number of required dispersion functions. \texttt{dp[i]} is the distance in meters beyond which the ist dispersion function is calculated between centroids only. 
+\item
+\textbf{poly}
+Required pairs of polygons. 
+\item
+\textbf{send.and.receive}
+TRUE, if results are required from sending polygons to target polygons and from target polygons to sending polygons (case of anisotropic functions). 
+\item
+\textbf{output}
+The required output on the screen (see~\ref{screen})
+\item
+\textbf{verbose}
+TRUE, if output is required about polygons convexity and landscape translation.
+\item
+\textbf{warn.poly}
+TRUE, if output is required about polygons simplification.
+\item
+\textbf{warn.conv}
+TRUE, if output is required when cubature convergence is not reached.
+\end{itemize}
+When the method is \texttt{cub} (cubature), additional components may be given. They are all vectors of length equal to the number of required functions. 
+\begin{itemize}
+\item
+\textbf{maxpts}
+Maximal number of evaluation points required for each function. 
+\item
+\textbf{reler}
+Relative error required for each function. 
+\item
+\textbf{abser}
+Absolute error required for each function. 
+\item
+\textbf{tz}
+Mode of triangulation for the cubature method for each function.
+\end{itemize}
+When the method is \texttt{grid} (evaluation on a grid), additional components may be given:
+\begin{itemize}
+\item
+\textbf{seed}
+Seed of the random generator. 
+\item
+\textbf{step}
+Steps of the grid
+\item
+\textbf{nr}
+Maximal number of replications or grids.
+\end{itemize}
+
+
+
+\chapter{Output}
+
+
+\section{Screen output depend on the parameter ``output''}
+\label{screen}
+Screen output 
+depend on the component \texttt{output}  of the argument \texttt{param}
+of the main function of \verb+RCALI+, \textbf{califlopp}.
+Its default value is the constant
+\texttt{DEFAULT\_OUTPUT} set in the
+file \texttt{src/caliconfig.h}.
+For each pair of polygons:
+\begin{itemize}
+\item
+When \texttt{output}$=1$ or \texttt{DEFAULT\_OUTPUT}=ALL,
+ output are:
+
+\begin{itemize}
+\item  
+With the grid method:
+\begin{itemize}
+\item  
+the  integrated flow calculated at each replication, 
+\item
+the  final value of the
+\hyperlink{gridmean}{integrated flow}, its mean per m$^2$
+of both polygons, the
+ \hyperlink{gridet}{standard deviation}
+and
+the \hyperlink{gridcoefvar}{variation coefficient}.
+\end{itemize}
+\item
+With the cubature method:
+\begin{itemize}
+\item  
+the
+\hyperlink{cubmean}{integrated flow}, its mean per m$^2$
+of both polygons, the
+ absolute error,  the
+%<a href="glossaire.html#cubic" target="gloss"
+%onClick="javascript:window.open (this.href, 'gloss',
+%'scrollbars=yes,resizable=yes,toolbar=yes,width=650,height=500')">intervalle
+%de confiance</a>:
+ \hyperlink{cubic}{confidence interval} and
+the number of evaluations.
+
+An asterisk before the absolute error
+means that the convergence has not been reached
+with the required precision.
+
+\end{itemize}
+
+\item
+With both methods,  the areas of the  polygons.
+\end{itemize}
+\item
+When \texttt{output}$=2$ 
+or \texttt{DEFAULT\_OUTPUT}=LIGHT, an iteration number (starting from 1)
+is only the output.
+\item
+When \texttt{output}$=3$ 
+or  \texttt{DEFAULT\_OUTPUT}=FLOW, output consist of:
+the integrated flow and  its mean per m$^2$
+of both polygons.
+\item
+When \texttt{output}$=0$ 
+or \texttt{DEFAULT\_OUTPUT}=NOTHING: nothing is written.
+\end{itemize}
+\textbf{Note:}
+When  all the pairs of polygons are treated,
+only $(npoly*(npoly+1))/2$ results are displayed,
+where $npoly$ is the number of polygons,
+unless the component \texttt{send.and.receive} of the argument \texttt{param}
+of the R-function \textbf{califlopp} is TRUE.
+
+
+\section{The result file}
+\label{result-file}
+\hypertarget{FICRES}{}
+When the argument \texttt{resfile}
+of the RCALI-function \textbf{califlopp} is set, a file is created.
+It contains part or all of the results.
+
+On the result-file: 
+
+\begin{itemize}
+\item
+The values are separated by tabulates.
+\item
+The first line contains:
+  \texttt{"npoly:"},
+\texttt{"input-file:"},
+\texttt{"nfunc:"},
+\texttt{"method:"}, each of these identifiers
+      followed by the actual values
+(\texttt{"method:"} is followed by either
+\texttt{"cubature"} or \texttt{"grid"}).
+\newline
+When the method is grid, the remaining of the line is
+\texttt{"stepx:"}, followed by the x-axis step and
+ \texttt{"stepy:"}, followed by the y-axis step.
+\item
+On each of the following lines, the results for a couple of
+      polygons are written:
+\begin{itemize}
+\item
+the identifiers of both polygons;
+\item
+for each  dispersal function,
+the integrated flow
+divided by the area of the second polygon;
+\item
+the areas of both polygons.
+\end{itemize}
+\label{OUTPUT_FORMAT}
+When the constant
+OUTPUT\_FILE\_FORMAT\footnote{
+Constant set in the file \texttt{src/caliconfig.h}.
+}=LIGHT, the remaining of the line is:
+
+\begin{itemize}
+\item When the method is cubature:
+For each dispersal function, 
+\begin{enumerate}
+\item 
+the  
+\hyperlink{cubmean}{integrated flow},
+\item 
+the lower and upper bounds of the 
+\hyperlink{cubic}{confidence interval},
+\item 
+the \hyperlink{abser}{absolute error},
+\item 
+the number of evaluations.
+\end{enumerate}
+\item When the method is grid, for each dispersal function, 
+\begin{enumerate}
+\item 
+the \hyperlink{gridmean}{integrated flow},
+\item 
+the \hyperlink{gridet}{standard deviation},
+\end{enumerate}
+
+\end{itemize}
+\end{itemize}
+
+
+Examples can be found in files suffixed by
+\texttt{.res}, in the subdirectories
+of the \texttt{examples} directory.
+
+\section{Error treatment }
+When an error is encountered, an explicit message
+is issued on the standard error unit (the screen, by default).
+Some types of errors are treated specifically:
+\begin{itemize}
+\item
+\textbf{Error in a polygon:}
+\newline 
+A polygon is considered as not valid when it cannot be split
+into convex subpolygons, i.e when it has too many obtuse angles.
+The treatment depends on the constant
+\texttt{ERR\_POLY}\footnote{Constant set in the file \texttt{src/caliconfig.h}}.
+When \texttt{ERR\_POLY} is null, an error message is issued, and the polygon
+is ignored.
+Otherwise, the error is fatal.
+
+\item 
+\label{AUTREERR}
+\textbf{Memory allocation problem,
+Overflow and Range Error:}
+An error message is issued and execution stops
+and returns a negative value.
+\end{itemize}
+
+\chapter{Example}
+
+
+\section{The polygons-file}
+The polygons file is  named \texttt{poly.txt}. It is 
+in format 1 (see \ref{format}) and
+the separator character is the blank character.
+Its first lines\footnote{The file \texttt{poly.txt} can be found
+in the directory \texttt{extdata} of the package.} are:
+\begin{verbatim}
+66
+1 540139  540116 540261    540274
+1 1794900   1795000   1795000  1794920
+2  540378 540467 540453 540373 540374
+2  1795000 1795000 1794850 1794850 1794890
+\end{verbatim}
+
+\section{Calculation by the cubature method}
+
+\label{example-parameter}
+Only one result is calculated here: the integrated 
+flow from the polygon
+66 to itself, by the cubature method.
+Thresholds are required for the relative errors:
+ 1.0e-4 for function 1 (pollen flow) and 
+1.0e-3 for function 2 (seed flow).
+The other parameters are let to their default values.
+The argument \texttt{param} of the R function \textbf{califlopp} is:
+
+\begin{Schunk}
+\begin{Sinput}
+> library("RCALI")
+> param <- list(input=1, delim=' ', 
++          reler=c(1.0e-4, 1.0e-3),
++          poly=c(66,66))
+> file <- paste(system.file("extdata", package = "RCALI"),
++           "poly.txt", sep='/')    
+>  califlopp(file=file, param=param)
+\end{Sinput}
+\begin{Soutput}
+CaliFloPP -  Copyright (c) 2007 - INRA
+
+Number of polygons: 66
+-------------------
+
+Parameters:
+-----------
+verbose: 0
+output: 1
+scale: 10
+maximal dispersion distances for each function: 0 21
+minimal dispersion distances for each function: 100 0
+(the dispersion is calculated between centroids,
+ for distances beyond these values)
+method:cubature
+function 1: relative precision = 0.0001, absolute precision = 0.001
+            maximal number of evaluations points fixed to 100000 
+function 2: relative precision = 0.001, absolute precision = 0.001
+            maximal number of evaluations points fixed to 100000 
+mode of triangulation: 0 1
+
+Polygons  66, 66
+-------------------
+
+Elapsed real time in integration: 0 seconds
+
+Integrated flow for function 1:
+ mean: 6117.53 mean/area1: 0.942609 mean/area2: 0.942609
+ absolute error: 0.61155 relative error: 9.99668e-05
+ confidence interval: [6116.92, 6118.15]
+ nb. evaluations: 70448
+
+Integrated flow for function 2:
+ mean: 6403.84 mean/area1: 0.986724 mean/area2: 0.986724
+ absolute error: 5.91296 relative error: 0.000923345
+ confidence interval: [6397.93, 6409.75]
+ nb. evaluations: 14726
+
+area1: 6490 area2: 6490 
+
+
+Total elapsed real time in integration: 0 seconds (0.000000 minutes)
+\end{Soutput}
+\end{Schunk}
+
+
+
+
+\section{Calculation by the grid method}
+
+
+The parameter-file, \texttt{exg2.param},  is:
+\begin{Schunk}
+\begin{Sinput}
+> param <- list(input=1, delim=' ', 
++          method="grid", 
++          output=3,
++           nr=20, 
++           step=c(0.25, 0.25),
++          poly=c(66,66))
+>  califlopp(file=file, param=param)
+\end{Sinput}
+\begin{Soutput}
+CaliFloPP -  Copyright (c) 2007 - INRA
+
+Number of polygons: 66
+-------------------
+
+Parameters:
+-----------
+verbose: 0
+output: 3
+scale: 10
+maximal dispersion distances for each function: 0 21
+minimal dispersion distances for each function: 100 0
+(the dispersion is calculated between centroids,
+ for distances beyond these values)
+method:grid
+seed: 1
+x-axis step: 0.25 m. 
+y-axis step: 0.25 m.
+number of estimations: 20
+
+Polygons  66, 66
+-------------------
+
+Integrated flow for function 1:
+ mean: 6117.35 mean/area1: 0.942581 mean/area2: 0.942581
+
+Integrated flow for function 2:
+ mean: 6403.98 mean/area1: 0.986745 mean/area2: 0.986745
+
+
+
+Total elapsed real time in integration: 41 seconds (0.000683 minutes)
+\end{Soutput}
+\end{Schunk}
+
+
+\part{Main steps of the programme}
+\include{VignetteDir/details}
+
+
+
+
+
+
+\part{A Small Glossary}
+\label{glossary}
+\begin{itemize}
+
+\item\textbf{\hypertarget{cubmean}{$\widehat{\A}$ : integrated flow} in the cubature  method:}
+\newline
+For each
+pair of convex subpolygons of a given pair
+of polygons, the \hyperlink{mink}{Minkowski sum}
+is calculated and triangulated.
+$\widehat{\A}$ is the result of an adaptive cubature  integration
+method
+ on all the triangles.\\
+Special cases:
+when threshold distances have been set,
+ $\widehat{\A}$ is automatically set to zero,
+or calculated between centroids only,
+beyond these distances (see~\ref{sec:steps}).
+
+
+\item\textbf{\hypertarget{gridmean}{$\widehat{\A}$ : mean of the integrated flows} in the grid method:}
+\newline
+$\widehat{\A}$ is the sum over all the pairs of
+convex subpolygons, 
+of the mean of the calculated values over the replications, i.e:
+$\widehat{\A} = \sum_{i=1}^{i=k}\sum_{j=1}^{j=r}\widehat{f}_{i,j}/r$,
+where $k$ is the number of pairs of convex subpolygons and
+$\widehat{f}_{i,j}$ is the calculated integrated flow 
+between one such pair of subpolygons,
+at the j$^{th}$ grid generation.\\
+Special cases:
+when threshold distances have been set,
+$\widehat{\A}$ is automatically set to zero,
+or calculated between centroids only,
+beyond these distances (see~\ref{sec:steps}).
+
+
+
+\item
+\textbf{\hypertarget{gridcoefvar}{Coefficient of variation}  in the grid method:}
+\newline
+$CV = $\hyperlink{gridet}{$standard\ deviation$}/\hyperlink{gridmean}{$mean$}.
+
+\item\textbf{\hypertarget{cubic}{Confidence Interval} in the cubature method:}
+\newline
+$IC = [\widehat{\A} - absolute\ error, \widehat{\A} + absolute\
+error]$
+
+\item\textbf{\hypertarget{mink}{ Minkowski sum of two polygons $A$ and $B$.}}
+\newline
+This sum is a polygon, denoted by $\check{A}\oplus B$.
+It is the set of points $p$, such that:
+$p= y-x, x \in A, y\in B$, i.e the set of points covered by $B$
+when a vertex of $B$ is moved inside $A$.
+
+\item\textbf{\hypertarget{reler}{Relative error} in the cubature method:}
+\newline
+$relative\ error = absolute\ error / result$
+
+
+
+
+\item\textbf{\hypertarget{gridet}{Standard deviation}  in the grid method:}
+\newline
+$standard\ deviation =
+\sqrt{\sum_{j=1}^{j=r}(\hat{f}_{.j}-\hat{f}_{..})^2 /(r-1)},$
+where
+$r$ is the number of replications, i.e
+the number of grid generations,
+$\hat{f}_{.j}$ the result of the grid integration at  replication $j$,
+and $\hat{f}_{..}$ the  mean  result over the $j$ replications.
+
+\end{itemize}
+
+
+\part{Developer Guide}
+\include{./VignetteDir/developer_guide}
+
+%\part{Appendix}
+%\appendix{}
+%\include{annexe/annexe}
+% Le copyright est dans le fichier COPYING: \include{copyright/copyright}
+
+\part{Bibliography}
+\bibliographystyle{alpha}
+
+\bibliography{VignetteDir/biblio/biblio,VignetteDir/biblio/kien,VignetteDir/biblio/hm}
+
+\textbf{
+The red figures at the end of each reference refers to the pages
+in the document.}
+
+
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
