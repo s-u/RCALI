@@ -1,6 +1,26 @@
-/*--------------- COPYRIGHT ------------------------
-|Institute: INRA - Unit: MIA, Jouy en Josas, France |
---------------------------------------------------*/
+/* ---------------------------------------------------------------
+  RCALI R package
+  Copyright INRA 2017
+  INRA, UR1404, Research Unit MaIAGE
+  F78352 Jouy-en-Josas, France.
+ 
+  URL: http://genome.jouy.inra.fr/logiciels/RCALI
+ 
+  This file is part of RCALI R package.
+  RCALI is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  any later version.
+ 
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  See the GNU General Public License at:
+  http://www.gnu.org/licenses/
+ 
+----------- --------------------------------------------------- */
 
 /*--------------- IDENTIFICATION PRODUIT -----------
 | Last update : 15 Feb 2006 oct 2009      |
@@ -87,7 +107,7 @@ rempSend (FILE * fparam, char separator, char type,
 	  int nsend, int *send, real * valr)
 {
 
-  int ip;
+  int ip, nclu;
   char carlu;
   char texte[LGPARAM];
   char moi[] = "rempSend";
@@ -97,8 +117,8 @@ rempSend (FILE * fparam, char separator, char type,
 
   for (ip = 0; ip < nsend; ip++)
     {
-      fscanf (fparam, "%s", texte);
-      if (feof (fparam))
+      nclu = fscanf (fparam, "%s", texte);
+      if ((nclu <=0) || feof (fparam))
 	{
 	  sprintf (errmess,
 		   "premature end of file; %d wanted values waited\n", nsend);
@@ -112,8 +132,8 @@ rempSend (FILE * fparam, char separator, char type,
 	  while (!feof (fparam) && ((carlu = fgetc (fparam)) != EOL))
 	    {
 	    }
-	  fscanf (fparam, "%s", texte);
-	  if (feof (fparam))
+	  nclu = fscanf (fparam, "%s", texte);
+	  if ((nclu <=0) || feof (fparam))
 	    {
 	      sprintf (errmess,
 		       "premature end of file; %d wanted values waited\n",
@@ -140,7 +160,7 @@ int
 rempCouple (FILE * fparam, int nsend, int *send, int *target)
 {
 
-  int ip;
+  int ip, nclu ;
   char carlu;
   char texte[LGPARAM];
   int val2;
@@ -150,9 +170,9 @@ rempCouple (FILE * fparam, int nsend, int *send, int *target)
 
   for (ip = 0; ip < nsend; ip++)
     {
-      fscanf (fparam, "%s %d", texte, &val2);
+      nclu = fscanf (fparam, "%s %d", texte, &val2);
 
-      if (feof (fparam))
+      if ((nclu <=0) || feof (fparam))
 	{
 	  sprintf (errmess,
 		   "premature end of file; %d wanted polygons waited\n",
@@ -167,8 +187,8 @@ rempCouple (FILE * fparam, int nsend, int *send, int *target)
 	  while (!feof (fparam) && ((carlu = fgetc (fparam)) != EOL))
 	    {
 	    }
-	  fscanf (fparam, "%s %d", texte, &val2);
-	  if (feof (fparam))
+	  nclu = fscanf (fparam, "%s %d", texte, &val2);
+	  if ((nclu <=0) || feof (fparam))
 	    {
 	      sprintf (errmess,
 		       "premature end of file; %d wanted polygons waited\n",
@@ -227,13 +247,13 @@ lit1Param (FILE * fparam,
 	   char libParam[NPARAM][LGPARAM], real & val1Param, char &ledelim)
 {
   char texte[LGPARAM];
-  int i;
+  int i, nclu;
   char clu=' ';
   char vallu[LGPARAM];
 
-  fscanf (fparam, "%s", texte);
+  nclu= fscanf (fparam, "%s", texte);
 
-  if (feof (fparam))
+  if ((nclu <=0) || feof (fparam))
     return (0);
 
   while (texte[0] == COMMENT)
@@ -243,8 +263,8 @@ lit1Param (FILE * fparam,
 	{
 	  // We search for the next line
 	}
-      fscanf (fparam, "%s", texte);
-      if (feof (fparam))
+       nclu= fscanf (fparam, "%s", texte);
+      if ((nclu <=0) || feof (fparam))
 	return (0);
     }				// end WHILE comment
   // OTER?  if (strcmp (texte, "delim") == 0)
@@ -264,8 +284,8 @@ lit1Param (FILE * fparam,
       clu = fgetc (fparam);
     }
   else
-    fscanf (fparam, "%s", vallu);
-  if (feof (fparam))
+    nclu= fscanf (fparam, "%s", vallu);
+  if ((nclu <=0) || feof (fparam))
     return (0);
 
 
@@ -457,7 +477,7 @@ califlopp_sd (int nfunct,
 
   char moi[] = "califlopp_sd";
 /* To save the messages */
-  char errmess[CHAR_MAX];
+  char errmess[CHAR_MAX], *charlu;
 
 //////////////////////////////////////////////////////////
   // Read the polygones file
@@ -473,7 +493,7 @@ califlopp_sd (int nfunct,
   // Read this file by using fgets, because it has
   // variable number of data on each line,
   // and we cannot mix the  fscanf and fgets
-  fgets (lu, MAX_LINE_POLY, fpi);
+  charlu = fgets (lu, MAX_LINE_POLY, fpi);
   npoly = atoi (lu);
 
 //////////////////////////////////////////////////////////
@@ -511,7 +531,7 @@ califlopp_sd (int nfunct,
 //////////////////////////////////////////////////////////
   // Read the parameters file
 //////////////////////////////////////////////////////////
-  int ludz=0, ludp=0, lutz=0;
+  int ludz=0, ludp=0, lutz=0, nclu=0;
   real valp=0;
   char carlu = ' ';
   int cas = 2;
@@ -644,7 +664,7 @@ califlopp_sd (int nfunct,
 	      ifunct[0] = jt[0];
 	      // Read the next indexes of the dispersion functions
 	      for (ifunc = 1; ifunc < nfunct; ifunc++)
-		fscanf (fparam, "%d", &(ifunct[ifunc]));
+		nclu=fscanf (fparam, "%d", &(ifunct[ifunc]));
 	      break;
 	    case reler:
 	      // reler is followed by the number of the function
@@ -726,7 +746,7 @@ califlopp_sd (int nfunct,
 	      pdz[0]=real(valp);
 	      // Read the next dz
 	      for (ifunc = 1; ifunc < nfunct; ifunc++) {
-		fscanf (fparam, "%d", &(i));
+		nclu=fscanf (fparam, "%d", &(i));
 		pdz[ifunc] = real(i);
 	      }
 	      break;
@@ -734,7 +754,7 @@ califlopp_sd (int nfunct,
 	      ludp=1;
               pdp[0]=real(valp);
 	      for (ifunc = 1; ifunc < nfunct; ifunc++) {
-		fscanf (fparam, "%d", &(i));
+		nclu=fscanf (fparam, "%d", &(i));
 		pdp[ifunc]  = real(i);
 	      }
 	      break;
@@ -742,7 +762,7 @@ califlopp_sd (int nfunct,
 	      lutz=1;
 	      ptz[0]=int(valp);
 	      for (ifunc = 1; ifunc < nfunct; ifunc++) {
-		fscanf (fparam, "%d", &(i));
+		nclu=fscanf (fparam, "%d", &(i));
 		ptz[ifunc] = i;
 	      }
 	      break;
@@ -848,8 +868,8 @@ califlopp_sd (int nfunct,
 //////////////////////////////////////////////////////////
 //Copyright
 //////////////////////////////////////////////////////////
-  if ((poutput != NOTHING) && (poutput != LIGHT))
-    Rprintf ("CaliFloPP -  Copyright (c) 2007 - INRA\n");
+//  if ((poutput != NOTHING) && (poutput != LIGHT))
+//    Rprintf ("CaliFloPP -  Copyright (c) 2007 - INRA\n");
 
 
 //////////////////////////////////////////////////////////
@@ -862,7 +882,6 @@ califlopp_sd (int nfunct,
   // (Polyd is not NULL in the programme 'polysimplif', only)
 
   int npolybons;
-
 
   erreur = ReadPoly (fpi, pverbose, calcSurf, pinput,
 		     pwarnpoly, pdelim,

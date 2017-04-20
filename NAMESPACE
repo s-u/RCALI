@@ -1,6 +1,6 @@
-# Les points d'entree C appelés par les fonctions R;
-# Programmes de la librairie RCALI.so
-useDynLib(RCALI, CALLcaliflopp)
+# C programs
+useDynLib(RCALI, .registration = TRUE)
+
 # pour getpoly et polymap
 import(splancs)
 importFrom("grDevices", "rainbow")

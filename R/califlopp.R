@@ -215,12 +215,14 @@ califlopp <- function(file, dispf=c(1,2),
     if (is.null(nomficp))
       nomficp<- ""
   # Call CaliFloPP:
+  retour <- 0
   .C("CALLcaliflopp",  as.integer(nfun),
      as.character(file),
    as.character(nomficp),
    as.character(resfile),
      as.integer(dispfc),
-     dispf,  new.env(), PACKAGE = "RCALI")
+     as.integer(retour),
+     dispf,  new.env())
 #     dispf,  parent.frame())
 
   # Delete the temporary parameters file when it is not a file

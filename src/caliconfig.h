@@ -123,7 +123,7 @@ Should be < INT_MAX (usually= 2147483647) */
 /* When the distance between two successive vertices 
   is less or equal to DISTP, the second one is suppressed
    Expressed in  meters  */
-#define DISTP   1.0
+#define DISTP  1.0
 
 /* When the arccosinus of the angle between three successive 
 vertices is inside [PI-ANGLEPREC, PI+ANGLEPREC], the vertices 

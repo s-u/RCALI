@@ -250,7 +250,7 @@ at the origin. Default in a standard configuration: 0,1,0,0,0
 \section{Side effect}{This function creates a temporary file to store the
   parameters, usually in the directory \code{tmp} of the user. This file
   is destroyed at the end of execution.} 
-\references{  - The CaliFloPP software: \url{http://www.inra.fr/miaj/public/logiciels/califlopp/} \cr
+\references{  - The CaliFloPP software: \url{http://genome.jouy.inra.fr/logiciels/califlopp} \cr
 - Main reference paper: A. Bouvier, K. Kieu, K. Adamczyk, and H. Monod. Computation of
   integrated flow of particles between polygons. Environmental Modelling
   & Software, 24:843--849, 2009.\cr

@@ -1,6 +1,27 @@
-/*--------------- COPYRIGHT ------------------------
-|Institute: INRA - Unit: MIA, Jouy en Josas, France |
---------------------------------------------------*/
+/* ---------------------------------------------------------------
+  RCALI R package
+  Copyright INRA 2017
+  INRA, UR1404, Research Unit MaIAGE
+  F78352 Jouy-en-Josas, France.
+ 
+  URL: http://genome.jouy.inra.fr/logiciels/RCALI
+ 
+  This file is part of RCALI R package.
+  RCALI is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  any later version.
+ 
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  See the GNU General Public License at:
+  http://www.gnu.org/licenses/
+ 
+-------------------------------------------------------------- */
+
 
 /*--------------- IDENTIFICATION PRODUIT -----------
 | Last update : 15 Feb 2006                        |
@@ -406,7 +427,6 @@ ReadPoly (FILE * fp, Boolean verbose,
   Boolean aligne = False;
   npolybons = npoly;
 
-
   // Read the coordinates 
   if ((erreur = ReadCoord (fp, pinput, pdelim, npoly,
 			   a, ni, Poly, numPoly, nomPoly,
@@ -583,6 +603,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
       // END verif of the aligned vertices
       // -----------------------------
 
+
       if (numPoly[i] < 0)
 	{
 	  // The poly is invalid: go to the next one
@@ -734,6 +755,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 	      // save the identificators of the poly
 	      npolybons--;
 	      numPoly[i] = -numPoly[i];
+
 	    }
 
 	}			// end poly not convex
@@ -768,6 +790,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
       Rprintf ("****************************************\n");
     }				// end verbose
 
+
   if ((erreur != OK) || (errglob != OK))
     {
       /*  CALI_WARNPOLY: some polygons erroneous.
@@ -792,8 +815,10 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 	return (ecrmess (CALI_WARNPOLY, moi, errmess, True));
 
     }				// end errglob
-  else
+  else {
     return (OK);
+  }
+
 }				// end ReadPoly
 
 ////////////////////////////////////////////////////////////

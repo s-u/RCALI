@@ -1,4 +1,13 @@
 =============
+Version 0.2-18
+Date: 2017-03-03
+=============
+* read1Poly.cc: fix a bug; When the first coordinate of a polygon
+begins with the character "0", an end of file was detected.
+* Change the site URL
+* Register the C routines
+
+=============
 Version 0.2-17
 Date: 2016-09-21
 =============
@@ -8,7 +17,7 @@ Date: 2016-09-21
 Version 0.2-16
 Date: 2016-09-20
 =============
-* Vector. cpp: Add the include stdio.h so the package can be 
+* Vector.cpp: Add the include stdio.h so the package can be 
 compiled on Solaris.
 
 =============

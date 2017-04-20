@@ -1,5 +1,6 @@
 \name{RCALI-package}
 \alias{RCALI-package}
+\alias{RCALI}
 \docType{package}
 \title{
 Calculation of the Integrated Flow of Particles Between Polygons
@@ -11,13 +12,13 @@ Calculation of the Integrated Flow of Particles Between Polygons
 \tabular{ll}{
 Depends: \tab splancs\cr
 License: \tab GPL version 2 or later\cr
-This package is an interface between R and the programme CaliFloPP: 
-see: \tab \url{http://www.inra.fr/miaj/public/logiciels/califlopp}\cr
- News\tab             \code{file.show(system.file("NEWS", package="RCALI"))}
+This package is an interface between R and the programme CaliFloPP: \cr
+\url{http://genome.jouy.inra.fr/logiciels/califlopp}\cr
+ News\tab             \code{file.show(system.file("NEWS", package="RCALI"))}\cr
+Main function: \tab \code{\link{califlopp}}
 }
-Main function: \code{\link{califlopp}}
 }
 \author{
-Annie Bouvier <annie.bouvier@jouy.inra.fr>
+Annie Bouvier <annie.bouvier@inra.fr>
 }
 \keyword{ package }

@@ -1,6 +1,27 @@
-/*--------------- COPYRIGHT ------------------------
-|Institute: INRA - Unit: MIA, Jouy en Josas, France |
---------------------------------------------------*/
+/* ---------------------------------------------------------------
+  RCALI R package
+  Copyright INRA 2017
+  INRA, UR1404, Research Unit MaIAGE
+  F78352 Jouy-en-Josas, France.
+ 
+  URL: http://genome.jouy.inra.fr/logiciels/RCALI
+ 
+  This file is part of RCALI R package.
+  RCALI is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  any later version.
+ 
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  See the GNU General Public License at:
+  http://www.gnu.org/licenses/
+ 
+-------------------------------------------------------------- */
+
 
 /*--------------- IDENTIFICATION PRODUIT -----------
 | Last update : 24 Jan 2007, oct 2009               |
@@ -270,7 +291,7 @@ methodAdapt::ReadArgu ()
 {
 
   char change[3];
-  int ifunc;
+  int ifunc, nclu;
 
   for (ifunc = 0; ifunc < this->nfunct; ifunc++)
     {
@@ -278,32 +299,32 @@ methodAdapt::ReadArgu ()
       Rprintf
 	("Relative precision for function %d: %g; do you want to change it ? (y/n)",
 	 this->ifunct[ifunc], this->reqreler[ifunc]);
-      scanf ("%1s", change);
+      nclu=scanf ("%1s", change);
       if (change[0] == 'y')
 	{
 	  Rprintf (" type in the new precision:");
-	  scanf ("%lf", &(this->reqreler[ifunc]));
+	  nclu=scanf ("%lf", &(this->reqreler[ifunc]));
 	}
 
       Rprintf
 	("Absolute precision for function %d: %g; do you want to change it ? (y/n)",
 	 this->ifunct[ifunc], this->reqabser[ifunc]);
-      scanf ("%1s", change);
+      nclu=scanf ("%1s", change);
       if (change[0] == 'y')
 	{
 	  Rprintf (" type in the new precision:");
-	  scanf ("%lf", &(this->reqabser[ifunc]));
+	  nclu=scanf ("%lf", &(this->reqabser[ifunc]));
 	}
 
 
       Rprintf
 	("Maximal number of evaluation points for function %d is automatically calculated; do you want to set it ? (y/n)",
 	 this->ifunct[ifunc]);
-      scanf ("%1s", change);
+      nclu=scanf ("%1s", change);
       if (change[0] == 'y')
 	{
 	  Rprintf (" type in the new value:");
-	  scanf ("%ld", &(this->reqmaxpts[ifunc]));
+	  nclu=scanf ("%ld", &(this->reqmaxpts[ifunc]));
 	}
     }				// end ifunc
 

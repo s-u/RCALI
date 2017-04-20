@@ -1,6 +1,27 @@
-/*--------------- COPYRIGHT ------------------------
-|Institute: INRA - Unit: MIA, Jouy en Josas, France |
---------------------------------------------------*/
+/* ---------------------------------------------------------------
+  RCALI R package
+  Copyright INRA 2017
+  INRA, UR1404, Research Unit MaIAGE
+  F78352 Jouy-en-Josas, France.
+ 
+  URL: http://genome.jouy.inra.fr/logiciels/RCALI
+ 
+  This file is part of RCALI R package.
+  RCALI is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  any later version.
+ 
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  See the GNU General Public License at:
+  http://www.gnu.org/licenses/
+ 
+-------------------------------------------------------------- */
+
 
 /*--------------- IDENTIFICATION PRODUIT -----------
 | Last update : 15 Feb 2006                        |
@@ -57,7 +78,7 @@ read1Poly (FILE * fp, char *pdelim,
       iget = atoi (fgets (lu, MAX_LINE_POLY, fp));
 
       // Detect the empty lines and the end of file
-      if ((iget == 0) || (strpbrk (lu, "0123456789") == NULL))
+      if ( strpbrk (lu, "0123456789") == NULL)
 	{
 	  sprintf (errmess, "premature end of file\n");
           return (ecrmess (CALI_ERPOLY1, moi, errmess));
@@ -195,11 +216,14 @@ read2Poly (FILE * fp, char *pdelim, int &ID, char *nom,
 
   //Read the coordinates:
 
+
   for (idim = 0; idim < DIM; idim++)
     {
       iget = atoi (fgets (lu, MAX_LINE_POLY, fp));
+
       // Detect the empty lines and the end of file
-      if ((iget == 0) || (strpbrk (lu, "0123456789") == NULL))
+      // 21/11/16      if ((iget == 0) || (strpbrk (lu, "0123456789") == NULL))
+      if ( strpbrk (lu, "0123456789") == NULL)
 	{
 	  sprintf (errmess,
 		   "premature end of file\npoly %d not finished\n", ID);
@@ -231,8 +255,10 @@ read2Poly (FILE * fp, char *pdelim, int &ID, char *nom,
 	    lesx[isom] = lucoord;
 	  else
 	    lesy[isom] = lucoord;
+
 	}			// end isom
 
     }				// end idim
+
   return (OK);
 }				// end read2Poly

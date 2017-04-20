@@ -1,6 +1,26 @@
-/*--------------- COPYRIGHT ------------------------
-|Institute: INRA - Unit: MIA, Jouy en Josas, France |
---------------------------------------------------*/
+/* ---------------------------------------------------------------
+  RCALI R package
+  Copyright INRA 2017
+  INRA, UR1404, Research Unit MaIAGE
+  F78352 Jouy-en-Josas, France.
+ 
+  URL: http://genome.jouy.inra.fr/logiciels/RCALI
+ 
+  This file is part of RCALI R package.
+  RCALI is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 2 of the License, or
+  any later version.
+ 
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  See the GNU General Public License at:
+  http://www.gnu.org/licenses/
+ 
+-------------------------------------------------------------- */
 
 /*--------------- IDENTIFICATION PRODUIT -----------
 |Last update : 28 aout 2008                       |
@@ -127,21 +147,21 @@ methodGrid::ReadArgu ()
   char moi[] = "methodGrid::ReadArgu";
 /* To save the messages */
   char errmess[CHAR_MAX];
-  int i;
+  int i, nclu;
 
   Rprintf ("Step for integration x axis (in meter):  ");
-  scanf ("%lf", &(this->l));
+  nclu=scanf ("%lf", &(this->l));
   this->l = this->l * SCALE;
 
   Rprintf ("Step for integration y axis (in meter):  ");
-  scanf ("%lf", &(this->h));
+   nclu=scanf ("%lf", &(this->h));
   this->h = this->h * SCALE;
 
   this->est = 1;
   while ((this->est < 2) || (this->est > MAX_EST))
     {
       Rprintf ("Number of estimations? ([2-%d]) ", MAX_EST);
-      scanf ("%d", &(this->est));
+       nclu=scanf ("%d", &(this->est));
 
       if ((this->est < 2) || (this->est > MAX_EST))
 	{
@@ -154,7 +174,7 @@ methodGrid::ReadArgu ()
 
 
   Rprintf ("\nSeed of the random generator: ");
-  scanf ("%d", &i);
+   nclu=scanf ("%d", &i);
 // Rque: direct read in  seed => compilation warning because seed is unsigned
   this->pseed = int (i);
 
@@ -234,7 +254,7 @@ methodGrid::PrintFic (FILE * fp, const int noa, const int nob,
 		      const real areac, const real aread)
 {
 
-  int ifunc, nr;
+  int ifunc;
   // Print what is common to the both methods:
   this->PrintFicOut (fp, noa, nob, areac, aread);
 
@@ -518,10 +538,10 @@ methodGrid::CalcR (const int poutput, int *dispfc,
   // For the heuristics:
   int nintegre = this->nfunct;
 
-  int i, ino, ifunc, j, itr, nr;
+  int i, ifunc, j, itr, nr;
 
   // Working: 
-  SEXP rho, f, args,resultsxp,callsxp;
+  SEXP rho, f=NULL, args,resultsxp,callsxp;
   /* store the R function and its environment */
   rho=SEXP(env);
 
