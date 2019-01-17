@@ -451,7 +451,7 @@ if ((num == zero) || (num == denom))
 	{
 // write the system message, then our
 	  sprintf (errmess,
-		   "Division overflow \n(s=%g num=%g denom=%g errno=%d EDOM=%d ERANGE=%d ) (increase REAL_PREC=%g ?)",
+		   "Division overflow \n(s=%d num=%g denom=%g errno=%d EDOM=%d ERANGE=%d ) (increase REAL_PREC=%g ?)",
 		   s, num, denom, errno, EDOM, ERANGE, REAL_PREC);
 
 	  // Fatal error
@@ -499,7 +499,7 @@ if ((num == zero) || (num == denom))
 	{
 // write the system message, then our
 	  sprintf (errmess,
-		   "Division overflow\n(t=%g num=%g denom=%g errno=%d EDOM=%d ERANGE=%d ) (increase REAL_PREC=%g ?)",
+		   "Division overflow\n(t=%d num=%g denom=%g errno=%d EDOM=%d ERANGE=%d ) (increase REAL_PREC=%g ?)",
 		   t, num, denom, errno, EDOM, ERANGE, REAL_PREC);
 	  // Fatal error
 	  return (ecrmess (CALI_ERINTERNAL, moi, errmess, True));

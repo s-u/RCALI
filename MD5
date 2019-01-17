@@ -1,7 +1,7 @@
-2dc8a7dd8a47d176614e4561a95eb78a *DESCRIPTION
+62b1071c8205d22f7d002e0823f78aa6 *DESCRIPTION
 05f4e61fc40bf98314b3b8cd4afa4e9a *LICENSE.note
 7e75d84f33877909d8046aafc0c9f676 *NAMESPACE
-a4a4b21b220841b9298920ed11d87bb3 *NEWS
+4e358e8ae8b65dd20aca6ce84d111983 *NEWS
 e107920d2e28f05ea417f285e4cc4011 *R/califlopp.R
 418d302c04510149b2459695dea1784c *R/fdispersions.R
 259c0e37eacd5869f0f9355226588d47 *R/generPoly.R
@@ -46,6 +46,7 @@ f54cd8aeaf20a5d0ebdd3b008ff77de3 *src/PileTr.cc
 8cac8a439cfe8e634359d88226cb80f1 *src/PileTr.h
 beff037c9c25f972aa3eaf9530c4823c *src/Point.cc
 6a522de03dd5e953948ee5a7ebd62836 *src/Point.h
+2c6297367503a7577a07260eb9189385 *src/RCALI_init.cc
 e95ef2f45e2744894d3a392aefa189ef *src/Rule.cc
 df374044cb2808e48c1ec03e6772f852 *src/Rule.h
 057e897c8d5c94f8ff49c8cd34a86be6 *src/Triangle.cc
@@ -69,9 +70,8 @@ ffe59be0cfd08c4428e5b8600dcd5fb7 *src/fluxsd.cc
 7befabe4f57827b9f7cd147d32a7d22c *src/geom.h
 c78c10344fa3097fed982b01ab728f4f *src/go.cc
 01e48af7d9fba1275058a5c331d781a9 *src/go.h
-e16582dd20d5aea33dc6f2cb964c7a78 *src/intersection.cc
+76ce4d475c592cdbd465a23d21027d92 *src/intersection.cc
 078f8ff8101a8c3a579d951709a5720b *src/intersection.h
-2c6297367503a7577a07260eb9189385 *src/main.cc
 1dcd096a4fe6a2515a0856bb1961abf6 *src/methodAdapt.cc
 3dcebc3ea55ba17851c616679c05a46f *src/methodAdapt.h
 51b29e288c63aadd12dde24a1f007f02 *src/methodGrid.cc
@@ -80,9 +80,9 @@ d709b3fc41267cf1ed8c4bb46d3fab6d *src/methodIntegr.h
 6e3d9f4f6853b227fde559d8f7edee51 *src/mt19937ar.cc
 671457cdaff930369345fe4f9fda70ba *src/mt19937ar.h
 1c510785b35494d62c0cd48ed676efb6 *src/quantiles.cc
-6be97b34563f414f7d670bd5df649515 *src/read1Poly.cc
+8bef99af5a2fe981e3cea83e7e57cc3c *src/read1Poly.cc
 ac9d2085a97d7ad2c5edc2a4b82872bd *src/read1Poly.h
-4ee1d5cfd32da30664dac3ca738357bf *src/readPoly.cc
+acf4d221a0945286c4ab8a66eb42164a *src/readPoly.cc
 3ac02567ac3151beca0122970279c1ab *src/readPoly.h
 04fafa3def454a915c6d61b2274e02f4 *src/util.cc
 cc8963202f14c0a8af3f23d42cd7def7 *src/util.h

@@ -197,7 +197,7 @@ read2Poly (FILE * fp, char *pdelim, int &ID, char *nom,
 
   if (p == NULL)
     {
-      sprintf (errmess, "Bad format or delimitor at line %s\n", lu);
+      sprintf (errmess, "Bad format or delimitor at line \n");
       return (ecrmess (CALI_ERPOLY9, moi, errmess));
     }
   strcpy (nom, p);

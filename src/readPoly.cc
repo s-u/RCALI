@@ -427,6 +427,8 @@ ReadPoly (FILE * fp, Boolean verbose,
   Boolean aligne = False;
   npolybons = npoly;
 
+  typesup[0]='\0';
+
   // Read the coordinates 
   if ((erreur = ReadCoord (fp, pinput, pdelim, npoly,
 			   a, ni, Poly, numPoly, nomPoly,
@@ -554,7 +556,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 		       typesup,
 		       (cc[XX] - (long int) valx / SCALE),
 		       (cc[YY] - (long int) valy / SCALE),
-		       cc[XX] * SCALE, cc[YY] * SCALE, polyident);
+		       cc[XX] * SCALE, cc[YY] * SCALE, polyident[i]);
 	      ecrmess (0, moi, errmess);
 	      } // end (warnpoly )
 
@@ -569,7 +571,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 		  if (warnpoly >0) {
 		  sprintf (errmess,
 			   "Warning: number of valid vertices < 3\n             %s\n\n",
-			   polyident);
+			   polyident[1]);
 		  ecrmess (0, moi, errmess);
 		  } // end  (warnpoly >0)
 		  numPoly[i] = -numPoly[i];	// invalid the poly
@@ -697,7 +699,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 	{
 	  sprintf (errmess,
 		   "Area of polygon = %g %s.\nAre coordinates clockwise?\n",
-		   area[i], polyident);
+		   area[i], polyident[1]);
 	  ecrmess (CALI_WARNPOLY, moi, errmess);
 	  erreur = CALI_WARNPOLY;
 	  npolybons--;
@@ -805,10 +807,10 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 	       "Idents of the %d erroneous polygons:\n", (npoly - npolybons));
       for (i = 0; i < npoly; i++)
 	{
-	  if (numPoly[i] < 0)
-	    sprintf (errmess, "%s %d ", errmess, -numPoly[i]);
+	  //if (numPoly[i] < 0)
+	  //  sprintf (errmess, "%s %d ", errmess, -numPoly[i]);
 	}
-      sprintf (errmess, "%s\n", errmess);
+      //sprintf (errmess, "%s\n", errmess);
       if (ERR_POLY == 0)
 	return (ecrmess (CALI_WARNPOLY, moi, errmess));
       else
