@@ -9,7 +9,7 @@
   \code{\link{crlistpoly}} and  \code{\link{generPoly}} }
 \section{Slots}{
 	 \describe{
-	   \item{\code{}}{List where each component is an object of
+	   \item{list}{List where each component is an object of
 	    \code{\link{poly-class}}
   }
 }

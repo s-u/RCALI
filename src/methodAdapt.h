@@ -57,6 +57,7 @@ public:
 		 const real * reqreler, const real * reqabser,
 		 const long int *reqmaxpts);
 
+  //methodAdapt (const methodAdapt &ma);
 
 
   ///////////////////////////////////////////////

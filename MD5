@@ -1,4 +1,4 @@
-62b1071c8205d22f7d002e0823f78aa6 *DESCRIPTION
+e68efc1ee5cd69d4057c2d740e73821e *DESCRIPTION
 05f4e61fc40bf98314b3b8cd4afa4e9a *LICENSE.note
 7e75d84f33877909d8046aafc0c9f676 *NAMESPACE
 4e358e8ae8b65dd20aca6ce84d111983 *NEWS
@@ -14,14 +14,14 @@ e72d6fab0d9ffef0959c28242be89676 *R/readpoly2.R
 fc87c23e55944c6d64f562ad377a1a4d *R/sourceDir.R
 93cf91c7296632fcdc158e05b610435b *demo/00Index
 552ab1828c1c1c4325b0443a3aca0b64 *demo/regular.R
-8afb2c1245df65806b6e8255c83e944d *inst/CITATION
+89da660189c127df4cb567ae5bf8855a *inst/CITATION
 faeff2e9a6d4bb97b99b98c1f7b21e64 *inst/doc/Guide.pdf
 a6672c437f7d3fa7779a9408262bf696 *inst/doc/art_ems2008.pdf
 ab0b4fb414d52a1f619f4a2160a2328b *inst/doc/index.html
 5b9d1ec8a9f21c9a82b28b07b5d1a3af *inst/extdata/poly.txt
-53e039502117ec827ae426fcfca8d080 *man/RCALI-package.Rd
+c186e8a77cc23b68c389fe9ff4443c02 *man/RCALI-package.Rd
 dabb147a807053851ac45843eb66618f *man/as.poly.Rd
-16f8d94adab6a44d0f09d75bc8190c5f *man/califlopp.Rd
+3405ae4a0d0c7fdbd4840c00d1a681f3 *man/califlopp.Rd
 c63564ac03e7f66571b5c95f4b478b52 *man/crlistpoly.Rd
 3ebafcdfed81bcddcc0b466f978aa673 *man/crpoly.Rd
 614784f10f2e7400917348c80534a3c2 *man/export.Rd
@@ -32,10 +32,10 @@ a79f4d4c8b2ba869c309a16f9cc9b977 *man/export.default.Rd
 21006171ffd04971df523944a788af39 *man/generPoly.Rd
 8ef626d86b6436811303aa30ddaec542 *man/generVois.Rd
 ae84c0765150126e442978b3103f6eb2 *man/getRes.Rd
-063c8ded6654b3b7bc44670bfc440e0d *man/listpoly-class.Rd
+b5299419e4d3ff1424d9cb764fe6a58a *man/listpoly-class.Rd
 3338a65dee111f3bf1363fec00b61a99 *man/plot.listpoly.Rd
 022629789456d4006e281dacc218927a *man/plot.poly.Rd
-f24135d3176bb326155a1ee895dced76 *man/poly-class.Rd
+3ec2eb80ac570488f59e169970a7151c *man/poly-class.Rd
 106d450be8f8f13aa992265feeaacddc *man/range.listpoly.Rd
 d400cba20ef8bd5cda05a128b5a0471f *man/readpoly1.Rd
 93d29146cbcb2de696f5272be50afff0 *man/readpoly2.Rd
@@ -53,7 +53,7 @@ df374044cb2808e48c1ec03e6772f852 *src/Rule.h
 9d366d30176dca01ecc8d3360e17978d *src/Triangle.h
 8c3af58b8f32238e6c10f6c3278ea502 *src/Vector.cc
 24a54354da5f8d7ee94d7e4230ae5e78 *src/Vector.h
-95cf30f1cb2be1fc643091b2e3aacd46 *src/caliboolean.h
+07f35061aeaa13da1dd39724e6ece36e *src/caliboolean.h
 5920f87749bbfc60b29fbfd11a6cd60e *src/caliconfig.h
 f2b69a2dd4ef3f7d14d486c5a88bb062 *src/calidefs.h
 95e7d684430b41e8cd46054685a18ed4 *src/calierror.h
@@ -72,8 +72,8 @@ c78c10344fa3097fed982b01ab728f4f *src/go.cc
 01e48af7d9fba1275058a5c331d781a9 *src/go.h
 76ce4d475c592cdbd465a23d21027d92 *src/intersection.cc
 078f8ff8101a8c3a579d951709a5720b *src/intersection.h
-1dcd096a4fe6a2515a0856bb1961abf6 *src/methodAdapt.cc
-3dcebc3ea55ba17851c616679c05a46f *src/methodAdapt.h
+cc2a4e625cf0e4e41078b6476d8c238f *src/methodAdapt.cc
+9ef6798133eb4848af978073163ae9e6 *src/methodAdapt.h
 51b29e288c63aadd12dde24a1f007f02 *src/methodGrid.cc
 6d0c084f1727fd942730ac230e2c268c *src/methodGrid.h
 d709b3fc41267cf1ed8c4bb46d3fab6d *src/methodIntegr.h

@@ -166,7 +166,7 @@ methodAdapt::Initialisation ()
   for (ifunc = 0; ifunc < MAX_NFUNCTIONS; ifunc++)
     {
       dmax = this->dzero[ifunc];
-
+      
       if (dmax > 0)
 	{
 
@@ -253,6 +253,11 @@ methodAdapt::methodAdapt (const int nfunc,
   int ifunc;
   this->Initialisation ();
 
+  for(int i=0; i< MAX_NFUNCTIONS; i++)
+  {
+      this->pasatteint[i]=False;
+  }
+
   for (ifunc = 0; ifunc < this->nfunct; ifunc++)
     {
       this->reqreler[ifunc] = treqreler[ifunc];
@@ -263,6 +268,28 @@ methodAdapt::methodAdapt (const int nfunc,
     }				// end ifunc
 
 }
+
+/* copy constructor
+methodAdapt::methodAdapt (const methodAdapt& ma)
+{
+  this->nfunct = ma.nfunct;
+  for (int i=0; i<ma.nfunct; i++) {
+    this->ifunct[i] = ma.ifunct[i];
+    this->dzero[i] = ma.dzero[i];
+    this->dpoint[i] = ma.dpoint[i];
+  }
+
+  int ifunc;
+  this->Initialisation();
+  for (ifunc = 0; ifunc < ma.nfunct; ifunc++)
+  {
+      this->reqreler[ifunc] = ma.reqreler[ifunc];
+      this->reqabser[ifunc] = ma.reqabser[ifunc];
+      this->reqmaxpts[ifunc] = ma.reqmaxpts[ifunc];
+      this->tzero[ifunc] = ma.tzero[ifunc];
+  }
+}*/
+
 
 
 

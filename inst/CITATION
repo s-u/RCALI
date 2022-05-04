@@ -14,7 +14,7 @@ author = personList(as.person("A. Bouvier"),
   volume =	 "24",
   number =	 "7",
   pages =	 "843-849",
-  url = "http://www.sciencedirect.com/science/article/B6VHC-4V5XP84-1/2/3bf54f587c26d8ea3df24a47e0a6d79d",
+  url = "https://hal.inrae.fr/hal-02662047",
 textVersion =
   paste("A. Bouvier, K. Kieu, K. Adamczyk and H. Monod (2009)",
 "Computation of integrated flow of particles between polygons.",

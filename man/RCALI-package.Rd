@@ -13,7 +13,7 @@ Calculation of the Integrated Flow of Particles Between Polygons
 Depends: \tab splancs\cr
 License: \tab GPL version 2 or later\cr
 This package is an interface between R and the programme CaliFloPP: \cr
-\url{http://genome.jouy.inra.fr/logiciels/califlopp}\cr
+\url{http://genome.jouy.inra.fr/logiciels/califlopp/}\cr
  News\tab             \code{file.show(system.file("NEWS", package="RCALI"))}\cr
 Main function: \tab \code{\link{califlopp}}
 }

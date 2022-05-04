@@ -9,7 +9,7 @@
   \code{\link{as.poly}} and \code{\link{crpoly}} }
 \section{Slots}{
 	 \describe{
-	   \item{}{Matrix with two columns \code{xcoord}
+	   \item{m}{Matrix with two columns \code{xcoord}
 	     and \code{ycoord}}
   }
 }

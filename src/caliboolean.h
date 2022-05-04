@@ -4,5 +4,5 @@
 /////////////////////////////////////////////////////////
 
 enum Boolean
-{ False, True, Notknown };
+{ False = 0, True = 1, Notknown };
 #endif
