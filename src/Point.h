@@ -15,6 +15,7 @@
 #include <math.h>
 #include <iostream>
 #include <float.h>
+#include <climits>
 #include <R.h> // For R_INLINE
 using namespace std;
 /////////////////////////////////////////////

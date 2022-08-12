@@ -9,7 +9,7 @@
 crlistpoly <- function(...) {
   retour<- list(...)
   for (i in retour) {
-    if (class(i) != "poly")
+    if (!is(i, "poly"))
       stop("Arguments should be objects of class 'poly'")
   }
   class(retour) <- "listpoly"
