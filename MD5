@@ -1,4 +1,4 @@
-e7bc0fcc3c6fda4ce460d4dee03b8f3a *DESCRIPTION
+49cc0bf10681967f43ea0abef7670a99 *DESCRIPTION
 05f4e61fc40bf98314b3b8cd4afa4e9a *LICENSE.note
 1afeff3ca4dc90e5afb12bcf8f379bd7 *NAMESPACE
 e107920d2e28f05ea417f285e4cc4011 *R/califlopp.R
@@ -69,7 +69,7 @@ ffe59be0cfd08c4428e5b8600dcd5fb7 *src/fluxsd.cc
 7befabe4f57827b9f7cd147d32a7d22c *src/geom.h
 c78c10344fa3097fed982b01ab728f4f *src/go.cc
 01e48af7d9fba1275058a5c331d781a9 *src/go.h
-76ce4d475c592cdbd465a23d21027d92 *src/intersection.cc
+719bb85ac063371dee5dc21e4433ba37 *src/intersection.cc
 078f8ff8101a8c3a579d951709a5720b *src/intersection.h
 cc2a4e625cf0e4e41078b6476d8c238f *src/methodAdapt.cc
 9ef6798133eb4848af978073163ae9e6 *src/methodAdapt.h
@@ -81,7 +81,7 @@ d709b3fc41267cf1ed8c4bb46d3fab6d *src/methodIntegr.h
 1c510785b35494d62c0cd48ed676efb6 *src/quantiles.cc
 8bef99af5a2fe981e3cea83e7e57cc3c *src/read1Poly.cc
 ac9d2085a97d7ad2c5edc2a4b82872bd *src/read1Poly.h
-acf4d221a0945286c4ab8a66eb42164a *src/readPoly.cc
+e8b7de5e1ee44f489a8499940f933d08 *src/readPoly.cc
 3ac02567ac3151beca0122970279c1ab *src/readPoly.h
 04fafa3def454a915c6d61b2274e02f4 *src/util.cc
 cc8963202f14c0a8af3f23d42cd7def7 *src/util.h

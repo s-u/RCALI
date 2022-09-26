@@ -552,7 +552,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 	      if (warnpoly >0) {
 	      // Format %g because in %f, there is generation of not exact decimal numbers 
 	      sprintf (errmess,
-		       "vertice removed %s:\n%g, %g (%g, %g) \n%s\n",
+		       "vertice removed %s:\n%g, %g (%g, %g) \n%c\n",
 		       typesup,
 		       (cc[XX] - (long int) valx / SCALE),
 		       (cc[YY] - (long int) valy / SCALE),
@@ -570,7 +570,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 		{
 		  if (warnpoly >0) {
 		  sprintf (errmess,
-			   "Warning: number of valid vertices < 3\n             %s\n\n",
+			   "Warning: number of valid vertices < 3\n             %c\n\n",
 			   polyident[1]);
 		  ecrmess (0, moi, errmess);
 		  } // end  (warnpoly >0)
@@ -698,7 +698,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
       if (area[i] <= 0)
 	{
 	  sprintf (errmess,
-		   "Area of polygon = %g %s.\nAre coordinates clockwise?\n",
+		   "Area of polygon = %g %c.\nAre coordinates clockwise?\n",
 		   area[i], polyident[1]);
 	  ecrmess (CALI_WARNPOLY, moi, errmess);
 	  erreur = CALI_WARNPOLY;

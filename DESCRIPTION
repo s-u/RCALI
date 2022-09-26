@@ -1,7 +1,7 @@
 Package: RCALI
 Title: Calculation of the Integrated Flow of Particles Between Polygons
-Version: 0.3.3
-Date: 2022-08-12
+Version: 0.3.4
+Date: 2022-09-26
 Encoding: UTF-8
 Authors@R: c(person("Annie", "Bouvier", role = c("aut","cph")),
         person("Kien", "Kieu", role = c("aut","cph")),
@@ -22,6 +22,6 @@ License: GPL-3
 URL: https://gitlab.paca.inrae.fr/biosp/RCALI
 Imports: splancs, graphics, grDevices, methods
 NeedsCompilation: yes
-Packaged: 2022-08-12 09:14:54 UTC; root
+Packaged: 2022-09-26 08:23:27 UTC; root
 Repository: CRAN
-Date/Publication: 2022-08-12 09:40:02 UTC
+Date/Publication: 2022-09-26 20:00:07 UTC
