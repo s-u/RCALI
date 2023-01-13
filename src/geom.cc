@@ -411,7 +411,7 @@ Angle3d (tPointd a, tPointd b, tPointd c)
       else
 	{
 
-	  sprintf (errmess,
+	  snprintf (errmess, CHAR_MAX,
 		   "Internal error: num= %30.18f den=%30.18f quot=%30.18f\n",
 		   num, den, quot);
 	  ecrmess (CALI_ERINTERNAL, moi, errmess, True);
@@ -593,7 +593,7 @@ Area2i (tPointi a, tPointi b, tPointi c)
   if (fabs (aire) >= INT_MAX)
     {
       // Fatal error
-      sprintf(errmess,  "area too big");
+      snprintf(errmess,CHAR_MAX,  "area too big");
       return (ecrmess (CALI_EROVER, moi, errmess, True));
     }
   else
@@ -731,7 +731,7 @@ SubVec (tPointi a, tPointi b, tPointi c)
       if (fabs (cc) >= INT_MAX)
 	{
 	  // Fatal error
-	  sprintf (errmess,"Subtraction of points too big");
+	  snprintf (errmess, CHAR_MAX,"Subtraction of points too big");
 	  ecrmess (CALI_EROVER, moi, errmess,  True);
 	}
       c[i] = int (cc);
@@ -764,7 +764,7 @@ AddVec (tPointi a, tPointi b, tPointi c)
       if (fabs (cc) >= INT_MAX)
 	{
 	  // Fatal error
-	  sprintf (errmess,"Addition of points too big");
+	  snprintf (errmess, CHAR_MAX,"Addition of points too big");
 	  ecrmess (CALI_EROVER, moi, errmess, True);
 	}
       c[i] = int (cc);

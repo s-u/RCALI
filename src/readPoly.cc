@@ -203,7 +203,7 @@ ReadCoord (FILE * fp,
 	    return (erreur);
 	  break;
 	default:
-	  sprintf (errmess, "Internal error:  format %d non reconnu\n",
+	  snprintf (errmess, CHAR_MAX, "Internal error:  format %d non reconnu\n",
 		   pinput);
 	  return (ecrmess (CALI_ERINTERNAL, moi, errmess, True));
 	  // it is a fatal programming error, if we go here
@@ -213,7 +213,7 @@ ReadCoord (FILE * fp,
 // Verify the identificators
       if (numPoly[ipoly] <= 0)
 	{
-	  sprintf (errmess, "Polygon ident should be >0\n");
+	  snprintf (errmess, CHAR_MAX, "Polygon ident should be >0\n");
 	  return (ecrmess (CALI_ERPOLY10, moi, errmess));
 	}
 
@@ -230,7 +230,7 @@ ReadCoord (FILE * fp,
 
       if (nsom < 3)
 	{
-	  sprintf (errmess,
+	  snprintf (errmess, CHAR_MAX,
 		   " number of vertices of polygon ident %d is %d (should be>=3)\n",
 		   numPoly[ipoly], nsom);
 	  return (ecrmess (CALI_ERPOLY5, moi, errmess));
@@ -273,7 +273,7 @@ ReadCoord (FILE * fp,
 
   if (toobig == True)
     {
-      sprintf (errmess, "Sorry : too big coordinates. \n");
+      snprintf (errmess, CHAR_MAX, "Sorry : too big coordinates. \n");
       return (ecrmess (CALI_ERPOLY8, moi, errmess));
     }
 
@@ -439,7 +439,7 @@ ReadPoly (FILE * fp, Boolean verbose,
   if (((pxminmax[1] - pxminmax[0]) >= SAFE) ||
       ((pyminmax[1] - pyminmax[0]) >= SAFE))
     {
-      sprintf (errmess,
+      snprintf (errmess, CHAR_MAX,
 	       "\nRange of the landscape (xrange=%d, yrange=%d) should be less than %d\n",
 	       (pxminmax[1] - pxminmax[0]), (pyminmax[1] - pyminmax[0]),
 	       SAFE);
@@ -494,14 +494,14 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 
 
       /* Identify the poly for the messages  */
-      sprintf (polyident, "(%d-st polygon - Ident: %d)\n", i + 1, numPoly[i]);
+      snprintf (polyident, CHAR_MAX, "(%d-st polygon - Ident: %d)\n", i + 1, numPoly[i]);
 
 
       /* Detect the aligned or close vertices   */
       p = vertices;
       do
 	{
-	  sprintf (typesup, "OK");	// the explication of the removal of a vertice
+	  snprintf (typesup, 30, "OK");	// the explication of the removal of a vertice
 
 	  // Come back to the meter for the angle and distance calculations
 	  bb[XX] = real (p->v[XX]) / SCALE;
@@ -519,7 +519,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 	      /* When the distance between the first vertice (bb)
                and the second one (cc) is <= DISTP (the threshold)
 	       the second one is removed */
-	      sprintf (typesup, "(<%g m. to another)", DISTP);
+	      snprintf (typesup, 30, "(<%g m. to another)", DISTP);
 	    }
 
 
@@ -534,14 +534,14 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 		  /* Removed the aligned vertices */
 
 
-		  sprintf (typesup, "(aligned with another)");
+		  snprintf (typesup,30, "(aligned with another)");
 		}
 	      else
 		{
 		  if ((angle >= -ANGLEPREC) && (angle <= ANGLEPREC))
 		    {
 		      /*  Removed the sharp "pics" */
-		      sprintf (typesup, "(sharp peak)");
+		      snprintf (typesup, 30,  "(sharp peak)");
 		    }
 		}
 	    }			// end (typesup == "")
@@ -551,7 +551,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 	    {
 	      if (warnpoly >0) {
 	      // Format %g because in %f, there is generation of not exact decimal numbers 
-	      sprintf (errmess,
+	      snprintf (errmess, CHAR_MAX,
 		       "vertice removed %s:\n%g, %g (%g, %g) \n%c\n",
 		       typesup,
 		       (cc[XX] - (long int) valx / SCALE),
@@ -569,7 +569,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
 	      if (ni[i][0] < 3)
 		{
 		  if (warnpoly >0) {
-		  sprintf (errmess,
+		  snprintf (errmess, CHAR_MAX,
 			   "Warning: number of valid vertices < 3\n             %c\n\n",
 			   polyident[1]);
 		  ecrmess (0, moi, errmess);
@@ -697,7 +697,7 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
       // the coordinates are not clockwise
       if (area[i] <= 0)
 	{
-	  sprintf (errmess,
+	  snprintf (errmess, CHAR_MAX,
 		   "Area of polygon = %g %c.\nAre coordinates clockwise?\n",
 		   area[i], polyident[1]);
 	  ecrmess (CALI_WARNPOLY, moi, errmess);
@@ -803,14 +803,14 @@ AB: 30/09/2009: move this loop initialisation into the loop over i
          or case where convex sub-polys building did not succed
        */
 
-      sprintf (errmess,
+      snprintf (errmess, CHAR_MAX,
 	       "Idents of the %d erroneous polygons:\n", (npoly - npolybons));
       for (i = 0; i < npoly; i++)
 	{
 	  //if (numPoly[i] < 0)
-	  //  sprintf (errmess, "%s %d ", errmess, -numPoly[i]);
+	  //  snprintf (errmess, CHAR_MAX, "%s %d ", errmess, -numPoly[i]);
 	}
-      //sprintf (errmess, "%s\n", errmess);
+      //snprintf (errmess, CHAR_MAX, "%s\n", errmess);
       if (ERR_POLY == 0)
 	return (ecrmess (CALI_WARNPOLY, moi, errmess));
       else

@@ -120,7 +120,7 @@ rempSend (FILE * fparam, char separator, char type,
       nclu = fscanf (fparam, "%s", texte);
       if ((nclu <=0) || feof (fparam))
 	{
-	  sprintf (errmess,
+	  snprintf (errmess, CHAR_MAX,
 		   "premature end of file; %d wanted values waited\n", nsend);
 	  return (ecrmess (CALI_ERPARAM3, moi, errmess));
 	}			// fin if (feof(fparam))
@@ -135,7 +135,7 @@ rempSend (FILE * fparam, char separator, char type,
 	  nclu = fscanf (fparam, "%s", texte);
 	  if ((nclu <=0) || feof (fparam))
 	    {
-	      sprintf (errmess,
+	      snprintf (errmess, CHAR_MAX,
 		       "premature end of file; %d wanted values waited\n",
 		       nsend);
 	      return (ecrmess (CALI_ERPARAM3, moi, errmess));
@@ -174,7 +174,7 @@ rempCouple (FILE * fparam, int nsend, int *send, int *target)
 
       if ((nclu <=0) || feof (fparam))
 	{
-	  sprintf (errmess,
+	  snprintf (errmess, CHAR_MAX,
 		   "premature end of file; %d wanted polygons waited\n",
 		   nsend);
 	  return (ecrmess (CALI_ERPARAM3, moi, errmess));
@@ -190,7 +190,7 @@ rempCouple (FILE * fparam, int nsend, int *send, int *target)
 	  nclu = fscanf (fparam, "%s %d", texte, &val2);
 	  if ((nclu <=0) || feof (fparam))
 	    {
-	      sprintf (errmess,
+	      snprintf (errmess, CHAR_MAX,
 		       "premature end of file; %d wanted polygons waited\n",
 		       nsend);
 	      return (ecrmess (CALI_ERPARAM3, moi, errmess));
@@ -225,7 +225,7 @@ getIndexParam (char *texte, char libParam[NPARAM][LGPARAM])
 	  break;
 	}
     }
-  sprintf (errmess, "Unknown keyword:  %s\n", texte);
+  snprintf (errmess, CHAR_MAX, "Unknown keyword:  %s\n", texte);
   return (ecrmess (CALI_ERPARAM1, moi, errmess));
 }				// end getIndexParam
 
@@ -330,7 +330,7 @@ void InitZ (int nfunct, int ludz, int ludp, int lutz,
 	pdz[ifunc]  = real(DZ5);
 	break;
       default:
-	      sprintf (errmess, "Internal error\n");
+	      snprintf (errmess, CHAR_MAX, "Internal error\n");
 	      ecrmess (CALI_ERPARAM1, moi, errmess);
       } // end switch
     } // end ifunc
@@ -355,7 +355,7 @@ void InitZ (int nfunct, int ludz, int ludp, int lutz,
 	pdp[ifunc]  = real(DP5);
 	break;
       default:
-	      sprintf (errmess, "Internal error\n");
+	      snprintf (errmess, CHAR_MAX, "Internal error\n");
 	       (ecrmess (CALI_ERPARAM1, moi, errmess));
       } // end switch
     } // end ifunc
@@ -382,7 +382,7 @@ void InitZ (int nfunct, int ludz, int ludp, int lutz,
 	ptz[ifunc]  = int(TZ5);
 	break;
       default:
-	      sprintf (errmess, "Internal error\n");
+	      snprintf (errmess, CHAR_MAX, "Internal error\n");
 	       (ecrmess (CALI_ERPARAM1, moi, errmess));
       } // end switch
     } // end ifunc
@@ -486,7 +486,7 @@ califlopp_sd (int nfunct,
   fpi = fopen (filenamei, "r");
   if (!fpi)
     {
-      sprintf (errmess, "cannot open polygons file %s\n", filenamei);
+      snprintf (errmess, CHAR_MAX, "cannot open polygons file %s\n", filenamei);
       return (ecrmess (CALI_ERFIC1, moi, errmess));
     }
 
@@ -572,7 +572,7 @@ califlopp_sd (int nfunct,
 	  ptz[ifunc] = TZ5;
 	  break;
 	default:
-	  sprintf (errmess, "Internal error:  fonction %d non reconnu\n",
+	  snprintf (errmess, CHAR_MAX, "Internal error:  fonction %d non reconnu\n",
 		   ifunc);
 	  return (ecrmess (CALI_ERINTERNAL, moi, errmess, True));
 	  // it is a fatal  programmation error if we pass here
@@ -588,7 +588,7 @@ califlopp_sd (int nfunct,
 	{
 	  libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly, Poly,
 		  bary);
-	  sprintf (errmess, "cannot open parameter file %s\n", fileparam);
+	  snprintf (errmess, CHAR_MAX, "cannot open parameter file %s\n", fileparam);
 
 	  return (ecrmess (CALI_ERFIC1, moi, errmess));
 	}
@@ -633,7 +633,7 @@ califlopp_sd (int nfunct,
 		{
 		  libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly,
 			  Poly, bary);
-		  sprintf (errmess,
+		  snprintf (errmess, CHAR_MAX,
 			   "parameter output %d should be in [0, %d]\n",
 			   poutput, MAX_VAL_OUTPUT);
 		  return (ecrmess (CALI_ERDIAG7, moi, errmess));
@@ -646,7 +646,7 @@ califlopp_sd (int nfunct,
 		{
 		  libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly,
 			  Poly, bary);
-		  sprintf (errmess,
+		  snprintf (errmess, CHAR_MAX,
 			   "number of function %d should be in [1, %d]\n",
 			   ifunc, MAX_NFUNCTIONS);
 		  return (ecrmess (CALI_ERDIAG4, moi, errmess));
@@ -676,7 +676,7 @@ califlopp_sd (int nfunct,
 		  libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly,
 			  Poly, bary);
 
-		  sprintf (errmess,
+		  snprintf (errmess, CHAR_MAX,
 			   "number of function after reler is %d, should be in [1, %d]\n",
 			   ifunc, MAX_NFUNCTIONS);
 		  return (ecrmess (CALI_ERDIAG4, moi, errmess));
@@ -700,7 +700,7 @@ califlopp_sd (int nfunct,
 		{
 		  libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly,
 			  Poly, bary);
-		  sprintf (errmess,
+		  snprintf (errmess, CHAR_MAX,
 			   "number of function after abser is %d, should be in [1, %d]\n",
 			   ifunc, MAX_NFUNCTIONS);
 		  return (ecrmess (CALI_ERDIAG4, moi, errmess));
@@ -726,7 +726,7 @@ califlopp_sd (int nfunct,
 		  libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly,
 			  Poly, bary);
 
-		  sprintf (errmess,
+		  snprintf (errmess, CHAR_MAX,
 			   "number of function after maxpts is %d, should be in [1, %d]\n",
 			   ifunc, MAX_NFUNCTIONS);
 		  return (ecrmess (CALI_ERDIAG4, moi, errmess));
@@ -803,7 +803,7 @@ califlopp_sd (int nfunct,
 		  libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly,
 			  Poly, bary);
 
-		  sprintf (errmess, "number of polygon must be >=1\n");
+		  snprintf (errmess, CHAR_MAX, "number of polygon must be >=1\n");
 		  return (ecrmess (CALI_ERDIAG2, moi, errmess));
 		}
 	      CREER_T1 (emet, nemet, int);
@@ -826,7 +826,7 @@ califlopp_sd (int nfunct,
 		  libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly,
 			  Poly, bary);
 
-		  sprintf (errmess, "number of polygon must be >=1\n");
+		  snprintf (errmess, CHAR_MAX, "number of polygon must be >=1\n");
 		  return (ecrmess (CALI_ERDIAG2, moi, errmess));
 		}
 	      CREER_T1 (emet, nemet, int);
@@ -843,7 +843,7 @@ califlopp_sd (int nfunct,
 	    default:
 	      libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly,
 		      Poly, bary);
-	      sprintf (errmess, "Unknown keyword\n");
+	      snprintf (errmess, CHAR_MAX, "Unknown keyword\n");
 	      return (ecrmess (CALI_ERPARAM1, moi, errmess));
 
 	    }			// fin switch
@@ -856,7 +856,7 @@ califlopp_sd (int nfunct,
 	{
 	  libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly, Poly,
 		  bary);
-	  sprintf (errmess, "when poly1 is set, poly2 should be set\n");
+	  snprintf (errmess, CHAR_MAX, "when poly1 is set, poly2 should be set\n");
 	  return (ecrmess (CALI_ERPARAM2, moi, errmess));
 	}
 #endif
@@ -898,7 +898,7 @@ califlopp_sd (int nfunct,
   if (npolybons == 0)
     {
       libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly, Poly, bary);
-      sprintf (errmess, "All polygons are invalid\n");
+      snprintf (errmess, CHAR_MAX, "All polygons are invalid\n");
       return (ecrmess (CALI_ERPOLY7, moi, errmess));
     }
   if ((poutput != NOTHING) && (poutput != LIGHT))
@@ -913,7 +913,7 @@ califlopp_sd (int nfunct,
     {
       libMem (npoly, emet, recoit, a, numPoly, area, ni, nomPoly, Poly, bary);
 
-      sprintf (errmess, "number of wanted polygons %d should be in [1-%d]\n",
+      snprintf (errmess, CHAR_MAX, "number of wanted polygons %d should be in [1-%d]\n",
 	       nemet, npoly);
       return (ecrmess (CALI_ERDIAG2, moi, errmess));
     }

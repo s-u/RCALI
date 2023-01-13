@@ -63,7 +63,7 @@ Triangle::Triangle (const Point & p1, const Point & p2, const Point & p3)
 
   if ((code = this->Verif ()) != OK)
     {
-      sprintf (errmess, "Bad triangle\n");
+      snprintf (errmess, CHAR_MAX, "Bad triangle\n");
       ecrmess (code, moi, errmess, True);
       //     Fatal error: ecrmess finishes by     exit(1);
     }
@@ -113,7 +113,7 @@ Triangle::Sommet (int i) const
       return (this->p3);
       break;
     default:
-      sprintf (errmess, "Internal error: Bad vertex index %d\n", i);
+      snprintf (errmess, CHAR_MAX, "Internal error: Bad vertex index %d\n", i);
       ecrmess (CALI_ERINTERNAL, moi, errmess, True);
       //     Fatal error: ecrmess se termine par     exit(1);
     }		

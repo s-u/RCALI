@@ -80,7 +80,7 @@ read1Poly (FILE * fp, char *pdelim,
       // Detect the empty lines and the end of file
       if ( strpbrk (lu, "0123456789") == NULL)
 	{
-	  sprintf (errmess, "premature end of file\n");
+	  snprintf (errmess, CHAR_MAX, "premature end of file\n");
           return (ecrmess (CALI_ERPOLY1, moi, errmess));
 	}
 
@@ -93,7 +93,7 @@ read1Poly (FILE * fp, char *pdelim,
 	{
 	  if (ID != idpred)
 	    {
-	      sprintf (errmess,
+	      snprintf (errmess, CHAR_MAX,
 		       "premature end of file\npoly %d not finished\n",
 		       idpred);
 	      return (ecrmess (CALI_ERPOLY2, moi, errmess));
@@ -108,14 +108,14 @@ read1Poly (FILE * fp, char *pdelim,
 	  lucoord = atof (p);
 	  if (lucoord <= -real (INT_MAX))
 	    {
-	      sprintf (errmess,
+	      snprintf (errmess, CHAR_MAX,
 		       "polygon ident %d has too small coordinates (%g <= %d)\n",
 		       ID, lucoord, INT_MAX);
 	      return (ecrmess (CALI_ERPOLY8, moi, errmess));
 	    }
 
 	  //      if (lucoord < 0) {
-//         sprintf (errmess,
+//         snprintf (errmess, CHAR_MAX,
 //                  "polygon ident %d has negative coordinates (%g)\n",
 //                  ID, lucoord);
 //         return (ecrmess(CALI_ERPOLY8, moi, errmess));
@@ -123,7 +123,7 @@ read1Poly (FILE * fp, char *pdelim,
 
 	  if (nsom > MAX_VERTICES)
 	    {
-	      sprintf (errmess,
+	      snprintf (errmess, CHAR_MAX,
 		       "polygon ident %d has %d vertices  (maximum MAX_VERTICES= %d)\n",
 		       ID, nsom, MAX_VERTICES);
 	      return (ecrmess (CALI_ERPOLY7, moi, errmess));
@@ -143,7 +143,7 @@ read1Poly (FILE * fp, char *pdelim,
 	{
 	  if (nsompred != nsom)
 	    {
-	      sprintf (errmess,
+	      snprintf (errmess, CHAR_MAX,
 		       "polygon ident %d has %d x-vertices and %d y-vertices.\n",
 		       ID, nsompred, nsom);
 	      return (ecrmess (CALI_ERPOLY3, moi, errmess));
@@ -180,7 +180,7 @@ read2Poly (FILE * fp, char *pdelim, int &ID, char *nom,
   // so, we search for numbers on the line
   if ((iget == 0) || (strpbrk (lu, "0123456789") == NULL))
     {
-      sprintf (errmess, "premature end of file\n");
+      snprintf (errmess, CHAR_MAX, "premature end of file\n");
       return (ecrmess (CALI_ERPOLY1, moi, errmess));
     }
 
@@ -189,7 +189,7 @@ read2Poly (FILE * fp, char *pdelim, int &ID, char *nom,
   p = strtok (lu, pdelim);
   if (p == NULL)
     {
-      sprintf (errmess, "premature end of file\n");
+      snprintf (errmess, CHAR_MAX, "premature end of file\n");
       return (ecrmess (CALI_ERPOLY1, moi, errmess));
     }
   ID = atoi (p);
@@ -197,7 +197,7 @@ read2Poly (FILE * fp, char *pdelim, int &ID, char *nom,
 
   if (p == NULL)
     {
-      sprintf (errmess, "Bad format or delimitor at line \n");
+      snprintf (errmess, CHAR_MAX, "Bad format or delimitor at line \n");
       return (ecrmess (CALI_ERPOLY9, moi, errmess));
     }
   strcpy (nom, p);
@@ -207,7 +207,7 @@ read2Poly (FILE * fp, char *pdelim, int &ID, char *nom,
   nsom = atoi (p);
   if (nsom > MAX_VERTICES)
     {
-      sprintf (errmess,
+      snprintf (errmess, CHAR_MAX,
 	       "polygon ident %d has %d vertices  (maximum MAX_VERTICES=%d)\n",
 	       ID, nsom, MAX_VERTICES);
       return (ecrmess (CALI_ERPOLY7, moi, errmess));
@@ -225,7 +225,7 @@ read2Poly (FILE * fp, char *pdelim, int &ID, char *nom,
       // 21/11/16      if ((iget == 0) || (strpbrk (lu, "0123456789") == NULL))
       if ( strpbrk (lu, "0123456789") == NULL)
 	{
-	  sprintf (errmess,
+	  snprintf (errmess, CHAR_MAX,
 		   "premature end of file\npoly %d not finished\n", ID);
 	  return (ecrmess (CALI_ERPOLY2, moi, errmess));
 	}
@@ -238,14 +238,14 @@ read2Poly (FILE * fp, char *pdelim, int &ID, char *nom,
 	    p = strtok (NULL, pdelim);
 	  if (p == NULL)
 	    {
-	      sprintf (errmess,
+	      snprintf (errmess, CHAR_MAX,
 		       "polygon ident %d should have %d vertices", ID, nsom);
 	      return (ecrmess (CALI_ERPOLY4, moi, errmess));
 	    }
 	  lucoord = atof (p);
 	  if (lucoord <= -real (INT_MAX))
 	    {
-	      sprintf (errmess,
+	      snprintf (errmess, CHAR_MAX,
 		       "polygon ident %d has too small coordinates (%g <= %d)\n",
 		       ID, lucoord, INT_MAX);
 	      return (ecrmess (CALI_ERPOLY8, moi, errmess));

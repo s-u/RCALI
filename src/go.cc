@@ -52,7 +52,7 @@
 int
 verifNumPoly (int numPoly, char *moi, char *errmess)
 {
-  sprintf (errmess, "Polygon ident %d is erroneous.", -numPoly);
+  snprintf (errmess, CHAR_MAX, "Polygon ident %d is erroneous.", -numPoly);
   ecrmess (CALI_WARNPOLY, moi, errmess);
 
   if (ERR_POLY != 0)
@@ -501,7 +501,7 @@ R_CheckUserInterrupt(); // allow user interruptions
       fpr = fopen (filenamer, openr);
       if (!fpr)
 	{
-	  sprintf (errmess, "cannot open result file %s\n", filenamer);
+	  snprintf (errmess, CHAR_MAX, "cannot open result file %s\n", filenamer);
 	  return (ecrmess (CALI_ERFIC1, moi, errmess));
 	}
       if (strncmp (openr, "w", 1) == 0)
@@ -536,14 +536,14 @@ R_CheckUserInterrupt(); // allow user interruptions
 	if ((c = getIndexPoly (npoly, clu, numPoly)) < 0)
 	  {
 	    Rprintf ("\nPolygon %d not found\n-------------------\n", clu);
-	    sprintf (errmess, "polygon %d not found\n", clu);
+	    snprintf (errmess, CHAR_MAX, "polygon %d not found\n", clu);
 	    return (ecrmess (CALI_ERDIAG1, moi, errmess));
 	  }
 
 	if ((d = getIndexPoly (npoly, dlu, numPoly)) < 0)
 	  {
 	    Rprintf ("\nPolygon %d not found\n-------------------\n", dlu);
-	    sprintf (errmess, "polygon %d not found\n", dlu);
+	    snprintf (errmess, CHAR_MAX, "polygon %d not found\n", dlu);
 	    return (ecrmess (CALI_ERDIAG1, moi, errmess));
 	  }
 
@@ -605,7 +605,7 @@ R_CheckUserInterrupt(); // allow user interruptions
 	      {
 		Rprintf ("\nPolygon %d not found\n-------------------\n",
 			send[ip]);
-		sprintf (errmess, "polygon %d not found \n", send[ip]);
+		snprintf (errmess, CHAR_MAX, "polygon %d not found \n", send[ip]);
 		return (ecrmess (CALI_ERDIAG1, moi, errmess));
 	      }
 
@@ -642,7 +642,7 @@ R_CheckUserInterrupt(); // allow user interruptions
 	      {
 		Rprintf ("\nPolygon %d not found\n-------------------\n",
 			send[ip]);
-		sprintf (errmess, "polygon %d not found\n", send[ip]);
+		snprintf (errmess, CHAR_MAX, "polygon %d not found\n", send[ip]);
 		return (ecrmess (CALI_ERDIAG1, moi, errmess));
 	      }
 	    /* Search for the index of the polygone */
@@ -651,7 +651,7 @@ R_CheckUserInterrupt(); // allow user interruptions
 		Rprintf ("\nPolygon %d not found\n-------------------\n",
 			target[ip]);
 		Rprintf ("Polygon %d not found\n", target[ip]);
-		sprintf (errmess, "polygon %d not found\n", target[ip]);
+		snprintf (errmess, CHAR_MAX, "polygon %d not found\n", target[ip]);
 		return (ecrmess (CALI_ERDIAG1, moi, errmess));
 	      }
 
@@ -678,7 +678,7 @@ R_CheckUserInterrupt(); // allow user interruptions
 #endif
 
     default:
-      sprintf (errmess, "bad case %d, must be 1,2,3 or 5\n", cas);
+      snprintf (errmess, CHAR_MAX, "bad case %d, must be 1,2,3 or 5\n", cas);
       return (ecrmess (CALI_ERDIAG3, moi, errmess));
 
     }				/* end switch */

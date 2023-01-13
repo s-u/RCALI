@@ -223,7 +223,7 @@ setConvexFromTo (POLYGON_STRUCT * PolygonVertices,
   // Verify in case of: if it is well programmed, we never go here!
   if ((iptd == -1) && (iptg == -1))
     {
-      sprintf (errmess,
+      snprintf (errmess, CHAR_MAX,
 	       "Internal error: on aurait du trouver au moins les 2 cotes adjacents\nLa diagonale iladiag va de %d a %d \n",
 	       PolygonDiagonals[idiag].vfrom, PolygonDiagonals[idiag].vto);
       return (ecrmess (CALI_ERINTERNAL, moi, errmess, True));
@@ -564,7 +564,7 @@ Triangulate (POLYGON_STRUCT * PolygonVertices,
 
 	      if (idiag >= maxidiag)
 		{
-		  sprintf (errmess,
+		  snprintf (errmess, CHAR_MAX,
 			   "Too many diagonals (maximum  = %d)\n%s",
 			   (maxidiag - MAX_VERTICES), errident);
 		  return (ecrmess (CALI_ERTRI2, moi, errmess));
@@ -608,7 +608,7 @@ Triangulate (POLYGON_STRUCT * PolygonVertices,
 
       if (!earfound)
 	{
-	  sprintf (errmess,
+	  snprintf (errmess, CHAR_MAX,
 		   "%%Error in Triangulate:  No ear found.  (Are coordinates clockwise?)\n%s",
 		   errident);
 	  return (ecrmess (CALI_ERTRI1, moi, errmess));
@@ -622,7 +622,7 @@ Triangulate (POLYGON_STRUCT * PolygonVertices,
   if ((code = crConvexSp (PolygonVertices, PolygonDiagonals,
 			  nvertices, ndiagonals, diagonalsize)) < 0)
     {
-      sprintf (errmess,
+      snprintf (errmess, CHAR_MAX,
 	       "%%Error in Triangulate: not enough memory size. (MAX_VERTICES great enough?)\n%s",
 	       errident);
       return (ecrmess (code, moi, errmess));
@@ -783,7 +783,7 @@ makePolyLeft (Boolean verbose,
 
 	      if (PolygonDiagonals[idiag].dnext == -1)
 		{
-		  sprintf (errmess,
+		  snprintf (errmess, CHAR_MAX,
 			   "Internal error: un next de %d from %d a %d pas connu\n",
 			   idiag,
 			   PolygonDiagonals[idiag].vfrom,
@@ -959,7 +959,7 @@ createSubPoly (tPolygoni * poly, int ns[],
 
 	}
 
-      sprintf (errmess,
+      snprintf (errmess, CHAR_MAX,
 	       "Cannot split polygon into convex subpolygons\n%s", errident);
       return (ecrmess (np, moi, errmess));
     }				// end erreur
@@ -979,7 +979,7 @@ createSubPoly (tPolygoni * poly, int ns[],
 
 	}
 
-      sprintf (errmess,
+      snprintf (errmess, CHAR_MAX,
 	       "Cannot split polygon into convex subpolygons\n%s", errident);
       // ADD 10/01/2008
       np = -1;			// poly erronne

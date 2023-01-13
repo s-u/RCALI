@@ -53,7 +53,7 @@ Vector::Vector (unsigned int s)
   x = new real[s];
   if (!s)
     {
-      sprintf (errmess, "memory allocation problem. ");
+      snprintf (errmess, CHAR_MAX, "memory allocation problem. ");
       // Fatal error 
       ecrmess (CALI_ERRALLOC, moi, errmess, True);
     }
@@ -88,7 +88,7 @@ Vector::operator[] (const int ind)
 
        if (ind < 0 || ind >= this->taille)
 	 {
-	   sprintf (errmess, "index out of range.");
+	   snprintf (errmess, CHAR_MAX, "index out of range.");
 	   // Fatal error 
 	   ecrmess (CALI_ERINTERNAL, moi, errmess, True);
 	 }
@@ -108,7 +108,7 @@ real & Vector::operator[](const int ind)
 
   if (ind < 0 || ind >= this->taille)
     {
-      sprintf (errmess, "index out of range. ");
+      snprintf (errmess, CHAR_MAX, "index out of range. ");
       // Fatal error 
       ecrmess (CALI_ERINTERNAL, moi, errmess, True);
     }
@@ -130,7 +130,7 @@ Vector & Vector::operator = (const Vector & v)
 
   if (this->taille != v.taille)
     {
-      sprintf (errmess, "index out of range. ");
+      snprintf (errmess, CHAR_MAX, "index out of range. ");
       // Fatal error 
       ecrmess (CALI_ERINTERNAL, moi, errmess, True);
     }
@@ -155,7 +155,7 @@ Vector & Vector::operator += (const Vector & v)
 
   if (this->taille != v.taille)
     {
-      sprintf (errmess, "index out of range. ");
+      snprintf (errmess, CHAR_MAX, "index out of range. ");
       // Fatal error 
       ecrmess (CALI_ERINTERNAL, moi, errmess, True);
     }

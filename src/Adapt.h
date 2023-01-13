@@ -15,6 +15,7 @@
 #include "Triangle.h"
 #include "Point.h"
 #include "Integrand.h"
+#include <stdio.h>
 #include <R.h> // For R_INLINE
 
 /////////////////////////////////////////////////////////

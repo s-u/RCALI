@@ -153,7 +153,7 @@ public:
 
     if ((this->nfunct <= 0) || (this->nfunct > MAX_NFUNCTIONS))
       {
-	sprintf (errmess,
+	snprintf (errmess, CHAR_MAX,
 		 "Invalid number of dispersion functions: should be in [1, %d]\n",
 		 MAX_NFUNCTIONS);
 	code = CALI_ERGRID1;
@@ -164,7 +164,7 @@ public:
 	if ((this->ifunct[ifunc] <= 0)
 	    || (this->ifunct[ifunc] > MAX_NFUNCTIONS))
 	  {
-	    sprintf (errmess,
+	    snprintf (errmess, CHAR_MAX,
 		     "Invalid number of dispersion function: %d, should be in [1, %d]\n",
 		     this->ifunct[ifunc], MAX_NFUNCTIONS);
 	    code = CALI_ERGRID1;

@@ -124,7 +124,7 @@ ReadPoints (tPointi p0, tPolygoni A, int ni, tPolygoni B, int si,
   n = ni;
   if (n > PMAX)
     {
-      sprintf (errmess,
+      snprintf (errmess, CHAR_MAX,
 	       "Error in ReadPoints: too many points %d (maximum PMAX = %d)\n",
 	       n, PMAX);
       return (ecrmess (CALI_ERPOLY7, moi, errmess, True));
@@ -148,7 +148,7 @@ ReadPoints (tPointi p0, tPolygoni A, int ni, tPolygoni B, int si,
 
   if ((n + s) > PMAX)
     {
-      sprintf (errmess,
+      snprintf (errmess, CHAR_MAX,
 	       "Error in ReadPoints: too many points %d (maximum PMAX = %d)\n",
 	       (n + s), PMAX);
       return (ecrmess (CALI_ERPOLY7, moi, errmess, True));

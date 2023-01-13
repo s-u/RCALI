@@ -522,7 +522,7 @@ methodAdapt::Triangulation (int numbera, int numberb,
       /* Save the numbers of the father sub-polys */
       if (ivertce >= maxlpoly)
 	{
-	  sprintf (errmess,
+	  snprintf (errmess, CHAR_MAX,
 		   "Maximal number of regions reached on polys (%d, %d).\n",
 		   numbera, numberb);
 	  ecrmess (CALI_MAXSREGIONS, moi, errmess, True);
@@ -601,7 +601,7 @@ methodAdapt::Triangulation0 (int numbera, int numberb,
       /* Save the numbers of the father sub-polys */
       if (ivertce >= maxlpoly)
 	{
-	  sprintf (errmess,
+	  snprintf (errmess, CHAR_MAX,
 		   "Maximal number of regions reached on polys (%d, %d).\n",
 		   numbera, numberb);
 	  ecrmess (CALI_MAXSREGIONS, moi, errmess, True);
@@ -986,7 +986,7 @@ resxp = (*dispf[this->ifunct[ifunc] - 1]) (lepoint);
 
 	      if (ivertce > maxlpoly)
 		{
-		  sprintf (errmess,
+		  snprintf (errmess, CHAR_MAX,
 			   "Maximal number of subregions %d reached for polygons (%d, %d).\n",
 			   maxlpoly, numbera, numberb);
 		  // Fatal error 
@@ -1035,7 +1035,7 @@ resxp = (*dispf[this->ifunct[ifunc] - 1]) (lepoint);
 	{
 	  if (this->pasatteint[ifunc] == True)
 	    {
-	      sprintf (errmess,
+	      snprintf (errmess, CHAR_MAX,
 		       "for polygons (%d, %d) and function %d,\n the convergence is not reached.\n",
 		       numbera, numberb, this->ifunct[ifunc]);
 	      ecrmess (CALI_MAXITER, moi, errmess, False);

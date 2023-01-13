@@ -110,20 +110,20 @@ methodGrid::VerifArgu ()
 
   if (this->l <= 0)
     {
-      sprintf (errmess, "Invalid step: must be positive.\n");
+      snprintf (errmess, CHAR_MAX, "Invalid step: must be positive.\n");
       code = CALI_ERGRID1;
       ecrmess (CALI_ERGRID1, moi, errmess);
     }
   if (this->h <= 0)
     {
-      sprintf (errmess, "Invalid step: must be positive.\n");
+      snprintf (errmess, CHAR_MAX, "Invalid step: must be positive.\n");
       code = CALI_ERGRID1;
       ecrmess (CALI_ERGRID1, moi, errmess);
     }
 
   if ((this->est < 2) || (this->est > MAX_EST))
     {
-      sprintf (errmess,
+      snprintf (errmess, CHAR_MAX,
 	       "Invalid number of estimations: must be greater or equal to 2 and less or equal to %d\n",
 	       MAX_EST);
       code = CALI_ERGRID2;
@@ -165,7 +165,7 @@ methodGrid::ReadArgu ()
 
       if ((this->est < 2) || (this->est > MAX_EST))
 	{
-	  sprintf (errmess,
+	  snprintf (errmess, CHAR_MAX,
 		   "Invalid number of estimations: must be greater than 2 and less or equal to %d\n",
 		   MAX_EST);
 	  return (ecrmess (CALI_ERGRID2, moi, errmess));
@@ -410,7 +410,7 @@ methodGrid::Integration (  int *dispfc, Function *pfunction,
 		  // AB: verif added in June 2007
 		  if (intersection->next->next == intersection)
 		    {
-		      sprintf (errmess,
+		      snprintf (errmess, CHAR_MAX,
 			       "Intersection with 2 points only 1: %g %g\n 2: %g %g\n",
 			       intersection->v[XX], intersection->v[YY],
 			       intersection->next->v[XX],
@@ -423,7 +423,7 @@ methodGrid::Integration (  int *dispfc, Function *pfunction,
 		  if ((intersection->next == intersection) ||
 		      (intersection->prev == intersection))
 		    {
-		      sprintf (errmess,
+		      snprintf (errmess, CHAR_MAX,
 			       "Intersection with 1 point only 1: %g %g\n",
 			       intersection->v[XX], intersection->v[YY]);
 // Fatal error
@@ -434,7 +434,7 @@ methodGrid::Integration (  int *dispfc, Function *pfunction,
 		      (intersection->v[YY] == 0.0))
 
 		    {
-		      sprintf (errmess, "Intersection with no point.\n");
+		      snprintf (errmess, CHAR_MAX, "Intersection with no point.\n");
 
 // Fatal error
 		      ecrmess (CALI_ERINTERNAL, moi, errmess, True);

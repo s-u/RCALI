@@ -245,7 +245,7 @@ Adapt::Integration (Integrand funsub, const int numbera, const int numberb)
       /* Verify the dimensions */
       if ((pointeur >= this->maxtri) || (top >= this->maxtri))
 	{
-	  sprintf (errmess,
+	  snprintf (errmess, CHAR_MAX,
 		   "Internal error pointeur %d top=%d maxtri=%d on polygons %d,%d\n",
 		   pointeur, top, maxtri, numbera, numberb);
 	  ecrmess (CALI_ERINTERNAL, moi, errmess, True);

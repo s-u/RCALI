@@ -108,7 +108,7 @@ R_INLINE Point Point::operator/ (const real d) const
     Tol = DBL_EPSILON;		//  To compare reals
   if (fabs (d - 0.0) < Tol)
     {
-      sprintf (errmess, "Internal error: division by zero");
+      snprintf (errmess, CHAR_MAX, "Internal error: division by zero");
       // Fatal error
       ecrmess (CALI_ERINTERNAL, moi, errmess, True);
     }
@@ -156,7 +156,7 @@ R_INLINE Point & Point::operator /= (real d)
     Tol = DBL_EPSILON;		//  To compare reals
   if (fabs (d - 0.0) < Tol)
     {
-      sprintf (errmess, "Internal error: division by zero");
+      snprintf (errmess, CHAR_MAX, "Internal error: division by zero");
       // Fatal error
       ecrmess (CALI_ERINTERNAL, moi, errmess, True);
     }
